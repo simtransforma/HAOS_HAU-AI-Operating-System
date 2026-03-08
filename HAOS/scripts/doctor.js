@@ -23,7 +23,8 @@ if (!fs.existsSync(tpl2)) { console.log('MISS templates/REPORT_SOLICITANTE_TEMPL
 function assertContains(file, terms) {
   const p = path.join(root, file);
   if (!fs.existsSync(p)) return false;
-  const c = fs.readFileSync(p, 'utf-8').toLowerCase();\n  return terms.every(t => c.includes(String(t).toLowerCase()));
+  const c = fs.readFileSync(p, 'utf-8').toLowerCase();
+  return terms.every(t => c.includes(String(t).toLowerCase()));
 }
 
 if (!assertContains('HAOS_PIPELINE.md', ['lista de dúvidas e questionamentos para o solicitante','consolidar respostas do solicitante','CONSELHO-Fase2'])) {
