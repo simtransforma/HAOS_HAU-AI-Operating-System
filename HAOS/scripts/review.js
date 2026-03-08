@@ -1,36 +1,101 @@
-const { loadTasks, saveTasks, now, applyPhase, validateGate } = require('./lib');
+const {
+  loadTasks,
+  saveTasks,
+  now,
+  applyPhase,
+  validateGate,
+  setTaskStatus,
+  RUNTIME_STATUS,
+  APPROVE_TRANSITIONS,
+  REJECT_TRANSITIONS
+} = require('./lib');
 
-const taskId = process.argv[2];
-const decision = (process.argv[3] || '').toLowerCase();
-if (!taskId || !['approve','reject'].includes(decision)) { console.log('Uso: npm run haos:review -- <TASK_ID> <approve|reject>'); process.exit(1); }
+const args = process.argv.slice(2);
+const taskId = args[0];
+const decision = (args[1] || '').toLowerCase();
+const justifyArg = args.find((a) => a.startsWith('--justify='));
+const justify = justifyArg ? justifyArg.split('=').slice(1).join('=').trim() : '';
 
-const tasks = loadTasks(); const t = tasks.find(x=>x.id===taskId);
-if(!t){ console.log('Task não encontrada.'); process.exit(1); }
-
-function block(msg, waitingOn='none'){ t.status='blocked_waiting_solicitante'; if(waitingOn!=='solicitante') t.status='blocked_dependency'; t.waitingOn=waitingOn; t.blockedReason=msg; t.updatedAt=now(); t.history.push({at:now(),event:'blocked_transition',by:'review-lead',reason:msg}); saveTasks(tasks); console.error(`BLOCKED: ${msg}`); process.exit(2); }
-
-if(decision==='approve'){
-  const g=validateGate(t); if(!g.ok) block(`Gate inválido na fase ${t.phaseName}. Campos ausentes: ${g.missing.join(', ')}`,'dependency');
-  if(t.phaseName==='CONSELHO-Fase1' && !t.questionMessageRef) block('CONSELHO-Fase1 exige questionMessageRef.','solicitante');
-  if(t.phaseName==='REPORT-SOLICITANTE' && !t.solicitanteReplyRef) block('REPORT-SOLICITANTE exige solicitanteReplyRef.','solicitante');
-
-  const nextByPhase = {
-    1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8, 8: 9,
-    9: 11, // happy path: VALIDACAO -> CONSELHO_Final_Aprovado
-    10: 5, // rework path: CONSELHO_SE_REPROVADO -> MEGA_BRAIN
-    11: 12,
-    12: 13,
-    13: 13
-  };
-  const next = nextByPhase[t.phase || 1] || 13;
-
-  applyPhase(t,next); t.status=(next===13?'done':'in_progress'); t.waitingOn='none'; t.blockedReason=null;
-  t.history.push({at:now(),event:'review_approved',by:'review-lead',nextPhase:t.phaseName});
-}else{
-  t.reproveCycles=(t.reproveCycles||0)+1;
-  if(t.reproveCycles>3) block('Limite de 3 ciclos de reprovação atingido. Escalar ao solicitante.','conselho');
-  t.status='rework'; applyPhase(t,10);
-  t.history.push({at:now(),event:'review_rejected',by:'review-lead',returnedTo:t.phaseName,cycles:t.reproveCycles});
+if (!taskId || !['approve', 'reject'].includes(decision)) {
+  console.log('Uso: npm run haos:review -- <TASK_ID> <approve|reject> [--justify="..."]');
+  process.exit(1);
 }
 
-t.updatedAt=now(); saveTasks(tasks); console.log(`${taskId}: ${decision.toUpperCase()} | fase=${t.phaseName} | status=${t.status}`);
+const tasks = loadTasks();
+const t = tasks.find((x) => x.id === taskId);
+if (!t) {
+  console.log('Task não encontrada.');
+  process.exit(1);
+}
+
+t.history = t.history || [];
+t.gateWarnings = t.gateWarnings || [];
+
+function failBlocked(message, waitingOn = 'dependency', pendingFields = []) {
+  setTaskStatus(t, RUNTIME_STATUS.BLOCKED_DEPENDENCY, {
+    waitingOn,
+    blockedReason: message,
+    pendingFields
+  });
+  t.updatedAt = now();
+  t.history.push({ at: now(), event: 'blocked_transition', by: 'review-lead', reason: message, pendingFields });
+  saveTasks(tasks);
+  console.error(`BLOCKED: ${message}`);
+  process.exit(2);
+}
+
+if (decision === 'approve') {
+  const g = validateGate(t, { mode: t.gateType });
+  t.gateOk = g.gateOk;
+
+  if (g.blocking) {
+    failBlocked(`Hard gate inválido na fase ${t.phaseName}. Campos ausentes: ${g.missing.join(', ')}`, 'dependency', g.missing);
+  }
+
+  if (g.mode === 'soft' && !g.gateOk) {
+    if (!justify) {
+      failBlocked('Soft gate incompleto exige justificativa explícita no review.', 'review', g.missing);
+    }
+    t.softGateOverride = true;
+    t.softGateJustification = justify;
+    t.gateWarnings = g.warnings;
+  } else {
+    t.softGateOverride = false;
+    t.softGateJustification = null;
+    t.gateWarnings = [];
+  }
+
+  const next = APPROVE_TRANSITIONS[t.phase || 1] || 13;
+  applyPhase(t, next);
+  setTaskStatus(t, next === 13 ? RUNTIME_STATUS.DONE : RUNTIME_STATUS.IN_PROGRESS, {
+    waitingOn: 'none',
+    blockedReason: null,
+    pendingFields: []
+  });
+
+  t.history.push({
+    at: now(),
+    event: 'review_approved',
+    by: 'review-lead',
+    nextPhase: t.phaseName,
+    gateOk: t.gateOk,
+    gateMode: g.mode,
+    gateWarnings: t.gateWarnings,
+    softGateOverride: t.softGateOverride,
+    softGateJustification: t.softGateJustification
+  });
+} else {
+  t.reproveCycles = (t.reproveCycles || 0) + 1;
+  const next = REJECT_TRANSITIONS.default;
+  applyPhase(t, next);
+  setTaskStatus(t, RUNTIME_STATUS.REWORK, {
+    waitingOn: 'none',
+    blockedReason: null,
+    pendingFields: []
+  });
+  t.history.push({ at: now(), event: 'review_rejected', by: 'review-lead', returnedTo: t.phaseName, cycles: t.reproveCycles });
+}
+
+t.updatedAt = now();
+saveTasks(tasks);
+console.log(`${taskId}: ${decision.toUpperCase()} | fase=${t.phaseName} | status=${t.status}`);

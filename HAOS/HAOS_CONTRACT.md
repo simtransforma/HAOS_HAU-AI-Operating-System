@@ -10,6 +10,8 @@
    `[timestamp][modelo llm][etapa][agente][ação][evidência][status/bloqueio]`
 7. Exceção `#`: modo direto sem rito para dúvidas/consultas/tarefas simples.
 8. Em tarefa complexa no rito v2, `CONSELHO-Fase1` exige questionamento explícito ao solicitante e `REPORT-SOLICITANTE` exige resposta explícita do solicitante. Sem isso, a tarefa fica bloqueada e não pode avançar para `CONSELHO-Fase2`.
+9. `hard gate` nunca avança com campos obrigatórios ausentes.
+10. `soft gate` só pode avançar com justificativa explícita, warnings registrados e trilha auditável no `history`.
 
 ## Definição de violação
 Constitui violação marcar `CONSELHO-Fase1` como `OK` sem bloco de perguntas enviado, ou marcar `REPORT-SOLICITANTE` como `OK` sem resposta do solicitante referenciada.

@@ -8,3 +8,5 @@ ABERTURA -> CONSELHO-Fase1 -> REPORT-SOLICITANTE -> CONSELHO-Fase2 -> MEGA_BRAIN
 - CONSELHO-Fase1 = debate + perguntas ao solicitante
 - REPORT-SOLICITANTE = consolidação da resposta do solicitante
 - CONSELHO-Fase2 = direção após resposta do solicitante
+
+Nota: o dicionário canônico de status do rito v2 é o mesmo do runtime. Status legados ficam restritos a adapter temporário interno e não devem aparecer em documentação ou reporte novo.

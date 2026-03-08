@@ -18,11 +18,10 @@ Formato único obrigatório:
 - REGISTRO
 
 ## Status de reporte (humano)
-- OK
+- IN_PROGRESS
 - BLOCKED_WAITING_SOLICITANTE
 - BLOCKED_DEPENDENCY
 - REWORK
-- FAIL
 - DONE
 
 ## Status de runtime (sistema)
@@ -31,3 +30,9 @@ Formato único obrigatório:
 - blocked_dependency
 - rework
 - done
+
+## Nota de soft gate
+Quando houver override de soft gate, registrar `warnings=` e `justify=` no campo de evidência.
+
+Exemplo:
+`[2026-03-08T12:10:00-03:00][gpt-5.3-codex][MEGA_BRAIN][orquestrador-haos][aprovar continuidade com lacuna não bloqueante][warnings=history ausente; justify=seguir por contexto suficiente][IN_PROGRESS]`

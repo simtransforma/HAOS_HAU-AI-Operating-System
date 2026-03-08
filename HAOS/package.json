@@ -22,6 +22,7 @@
     "haos:kb-build": "python scripts/kb_build_local.py",
     "haos:kb-search": "node scripts/kb-search.js",
     "haos:update-task": "node scripts/update-task.js",
-    "haos:test-acceptance": "node scripts/test-acceptance.js"
+    "haos:test-acceptance": "node scripts/test-acceptance.js",
+    "haos:status-lint": "node scripts/status-lint.js"
   }
 }

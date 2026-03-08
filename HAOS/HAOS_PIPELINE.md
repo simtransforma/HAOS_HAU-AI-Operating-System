@@ -6,6 +6,17 @@
 ## Regra curta obrigatória
 No rito v2, `CONSELHO-Fase1` não termina com “OK”; termina com perguntas ao solicitante. `REPORT-SOLICITANTE` não termina com “OK”; termina com respostas do solicitante consolidadas. Sem isso, não existe `CONSELHO-Fase2`.
 
+## Dicionário canônico de status
+| Semântica | Runtime | Reporte humano |
+|---|---|---|
+| Em progresso | `in_progress` | `IN_PROGRESS` |
+| Bloqueado aguardando solicitante | `blocked_waiting_solicitante` | `BLOCKED_WAITING_SOLICITANTE` |
+| Bloqueado por dependência/evidência | `blocked_dependency` | `BLOCKED_DEPENDENCY` |
+| Em retrabalho | `rework` | `REWORK` |
+| Concluído | `done` | `DONE` |
+
+Regra adicional: `soft gate` pode avançar com `gate_ok=false` somente com justificativa explícita e warnings auditáveis. `hard gate` sem evidência suficiente bloqueia.
+
 ## Etapas e saídas obrigatórias
 ### ABERTURA
 - Entrada obrigatória: demanda recebida.
@@ -13,7 +24,7 @@ No rito v2, `CONSELHO-Fase1` não termina com “OK”; termina com perguntas ao
 - Saída obrigatória: consolidação inicial validada.
 - Critério de passagem: escopo inicial validado.
 - Proibições: iniciar execução sem escopo.
-- Status quando bloqueado: `BLOQUEADO_ESCOPO`.
+- Status quando bloqueado: `blocked_dependency`.
 
 ### CONSELHO-Fase1
 - Entrada obrigatória: ABERTURA concluída com escopo inicial.
@@ -24,7 +35,7 @@ No rito v2, `CONSELHO-Fase1` não termina com “OK”; termina com perguntas ao
 - Saída obrigatória: ata/resumo, bloco de perguntas, linha de reporte.
 - Critério de passagem: bloco de perguntas efetivamente enviado ao solicitante.
 - Proibições: marcar OK sem perguntas; pular para Fase2 sem REPORT; assumir autorização implícita.
-- Status quando bloqueado: `AGUARDANDO_SOLICITANTE`.
+- Status quando bloqueado: `blocked_waiting_solicitante`.
 
 ### REPORT-SOLICITANTE
 - Entrada obrigatória: perguntas da Fase1 enviadas ao solicitante.
@@ -35,7 +46,7 @@ No rito v2, `CONSELHO-Fase1` não termina com “OK”; termina com perguntas ao
 - Saída obrigatória: resposta referenciada + consolidação + ajustes de escopo + linha de reporte.
 - Critério de passagem: resposta explícita do solicitante registrada.
 - Proibições: usar instrução antiga/inferência como resposta nova; marcar OK sem resposta.
-- Status quando bloqueado: `AGUARDANDO_RESPOSTA_SOLICITANTE`.
+- Status quando bloqueado: `blocked_waiting_solicitante`.
 
 ### CONSELHO-Fase2
 - Entrada obrigatória: REPORT-SOLICITANTE concluído com resposta registrada.
@@ -43,7 +54,7 @@ No rito v2, `CONSELHO-Fase1` não termina com “OK”; termina com perguntas ao
 - Saída obrigatória: decisão de rota + briefing validado + KPI alvo.
 - Critério de passagem: decisão formal registrada.
 - Proibições: iniciar sem resposta do solicitante.
-- Status quando bloqueado: `BLOQUEADO_SEM_RESPOSTA_SOLICITANTE`.
+- Status quando bloqueado: `blocked_dependency`.
 
 ### MEGA_BRAIN
 - Objetivo: síntese executiva única.
