@@ -9,16 +9,13 @@
 - review-lead
 - qa
 
-### 2) CONSELHO-Fase1
+### 2) Conselho estratégico
 - project-director
 - operations-director
 - strategy-director
 - architect
 
 ### 3) Squads de execução
-
-#### Acquisition (multicanal)
-- traffic-master (dono estratégico/tático)
 
 #### Tracking & Data
 - tracking-engineer
@@ -53,7 +50,6 @@
 - traffic-master
 
 ## C) Regra de operação
-- traffic-master consolida estratégia de mídia e coordena execução multicanal.
+- Estratégia e direção de mídia rodam por departamento funcional `@trafego` usando agentes ativos.
 - tracking-engineer e attribution-analyst permanecem separados para profundidade técnica.
 - Toda entrega respeita HAOS_CONTRACT, gates e handoffs.
-

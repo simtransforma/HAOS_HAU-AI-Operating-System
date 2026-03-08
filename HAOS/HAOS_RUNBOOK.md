@@ -1,5 +1,14 @@
 # HAOS_RUNBOOK.md
 
+## 0) TRIAGEM DE ENTRADA
+Classificar toda mensagem em exatamente um modo:
+- **direto**: sem `#` e sem `@agente`/`@departamento`;
+- **especialista**: sem `#`, com `@agente`;
+- **departamento**: sem `#`, com `@departamento`;
+- **rito**: começando com `#`.
+
+Regra: o runbook só entra na fase `ABERTURA` quando a triagem classificar a entrada como **rito**.
+
 ## Operação padrão (rito v2)
 1) ABERTURA
 2) CONSELHO-Fase1 (debate + perguntas ao solicitante)

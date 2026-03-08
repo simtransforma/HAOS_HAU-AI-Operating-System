@@ -7,8 +7,18 @@ const root = process.cwd();
 let ok = true;
 
 const required = [
-  'HAOS_MASTER_SCOPE.md', 'HAOS_CONTRACT.md', 'HAOS_RACI.md', 'HAOS_PIPELINE.md', 'HAOS_AGENT_MAP_V1.md',
-  'HAOS_SYSTEM_MAP.md', 'HAOS_HANDOFFS.md', 'HAOS_RUNBOOK.md', 'HAOS_AGENT_REGISTRY.md'
+  'HAOS_MASTER_SCOPE.md',
+  'HAOS_CONTRACT.md',
+  'HAOS_RACI.md',
+  'HAOS_PIPELINE.md',
+  'HAOS_AGENT_MAP_V1.md',
+  'HAOS_SYSTEM_MAP.md',
+  'HAOS_HANDOFFS.md',
+  'HAOS_RUNBOOK.md',
+  'HAOS_AGENT_REGISTRY.md',
+  'HAOS_ENTRY_ROUTING.md',
+  'HAOS_DEPARTMENTS.md',
+  'HAOS_FAQ_RAPIDO.md'
 ];
 for (const f of required) {
   const exists = fs.existsSync(path.join(root, f));
@@ -38,6 +48,57 @@ for (const f of syntaxFiles) {
     console.log(`OK syntax scripts/${f}`);
   } catch {
     console.log(`MISS syntax scripts/${f}`);
+    ok = false;
+  }
+}
+
+function readSafe(rel) {
+  const p = path.join(root, rel);
+  if (!fs.existsSync(p)) return '';
+  return fs.readFileSync(p, 'utf-8');
+}
+
+const readme = readSafe('README.md');
+const contract = readSafe('HAOS_CONTRACT.md');
+if (!readme.includes('começando com `#`') || !readme.includes('sem `#`')) {
+  console.log('MISS semântica: README sem regra explícita de roteamento por `#`.');
+  ok = false;
+}
+if (readme.includes('`#`, operar em **modo direto (sem rito HAOS)**')) {
+  console.log('MISS semântica: README ainda indica `#` como modo direto.');
+  ok = false;
+}
+if (!contract.toLowerCase().includes('roteamento oficial de entrada') || !contract.includes('só abre com mensagem iniciando por `#`')) {
+  console.log('MISS semântica: CONTRACT sem seção de roteamento oficial de entrada.');
+  ok = false;
+}
+
+const map = readSafe('HAOS_AGENT_MAP_V1.md');
+const activeBlock = (map.match(/## A\)[\s\S]*?## B\)/) || [''])[0];
+const discontinuedBlock = (map.match(/## B\)[\s\S]*?## C\)/) || [''])[0];
+const extractBullets = (txt) => [...txt.matchAll(/^\s*-\s+([a-z0-9-]+)\s*$/gim)].map((m) => m[1]);
+const activeAgents = new Set(extractBullets(activeBlock));
+const discontinuedAgents = new Set(extractBullets(discontinuedBlock));
+const overlap = [...activeAgents].filter((a) => discontinuedAgents.has(a));
+if (overlap.length) {
+  console.log(`MISS semântica: agente(s) ativo(s) e descontinuado(s) ao mesmo tempo: ${overlap.join(', ')}`);
+  ok = false;
+}
+
+const departments = readSafe('HAOS_DEPARTMENTS.md');
+const deptSection = ((departments.match(/## `@departamentos` oficiais[\s\S]*?## `@agentes` individuais oficiais/) || [''])[0]);
+const deptAgents = [...deptSection.matchAll(/-\s+`@([a-z0-9-]+)`/gim)].map((m) => m[1]);
+const officialDepts = ['orquestracao', 'conselho', 'dados', 'criativo', 'funnel', 'produto', 'trafego'];
+for (const d of officialDepts) {
+  if (!departments.includes(`### \`@${d}\``)) {
+    console.log(`MISS semântica: departamento @${d} sem composição oficial documentada.`);
+    ok = false;
+  }
+}
+for (const a of deptAgents) {
+  if (officialDepts.includes(a)) continue;
+  if (!activeAgents.has(a)) {
+    console.log(`MISS semântica: HAOS_DEPARTMENTS usa agente fora da lista ativa: @${a}`);
     ok = false;
   }
 }

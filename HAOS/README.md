@@ -8,12 +8,15 @@ Runtime e operação do HAU AI Operating System.
 ## Formato obrigatório de reporte
 `[timestamp][modelo llm][etapa][agente][ação][evidência][status/bloqueio]`
 
-## Exceção de comando rápido (`#`)
-Se a mensagem do Gian começar com `#`, operar em **modo direto (sem rito HAOS)** para:
-- dúvidas rápidas
-- conversa
-- consultas simples
-- tarefas simples
+## Roteamento oficial de entrada
+- Mensagem começando com `#` -> **abre rito HAOS v2**.
+- Mensagem sem `#` -> **não abre rito por padrão**.
+- Mensagem sem `#`, com `@agente`/`@departamento` -> **consulta dirigida sem rito**.
+- Complexidade percebida não autoriza abertura automática de rito.
+
+Referências normativas:
+- `HAOS_ENTRY_ROUTING.md`
+- `HAOS_DEPARTMENTS.md`
 
 ## Setup
 ```bash
@@ -41,4 +44,3 @@ Toda entrega concluída precisa ser registrada em memória/log e também em Obsi
 Separação de vaults:
 - **Vault de sistema HAOS**: documentação do método/sistema (sem tarefas operacionais).
 - **Vault de tarefas/projetos**: execução operacional em `Tarefas/Projetos/<tarefa-ou-projeto>/`.
-

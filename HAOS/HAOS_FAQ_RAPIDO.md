@@ -1,21 +1,20 @@
 # HAOS FAQ Rápido
 
-## 1) Quando usar o rito HAOS completo?
-Use o rito completo em toda tarefa operacional.
+## 1) Sem `#`, abre rito?
+Não. Sem `#`, não existe rito por inferência.
 
-## 2) Existe exceção?
-Sim. Se a mensagem do Gian começar com `#`, usar **modo direto (sem rito HAOS)**.
+## 2) `@departamento` abre rito?
+Não. Sem `#`, `@agente` e `@departamento` são consulta dirigida.
 
-## 3) Para que serve o `#`?
-Para:
-- dúvidas rápidas
-- conversa
-- consultas simples
-- tarefas simples
+## 3) Posso debater com especialista e abrir rito depois?
+Sim. Debata sem `#` e, quando quiser abrir rito, envie nova mensagem começando com `#`.
 
-## 4) Formato de reporte do rito
+## 4) Como abro o rito?
+Começando a mensagem com `#`.
+
+## 5) Formato de reporte do rito
 `[timestamp][modelo llm][etapa][agente][ação][evidência][status/bloqueio]`
 
-## 5) Onde registrar?
+## 6) Onde registrar?
 - Sistema HAOS: vault de sistema
 - Operação de tarefas/projetos: vault `Tarefas-Projetos-Vault`
