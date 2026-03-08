@@ -40,6 +40,10 @@ const targets = [
   path.join(root, 'scripts', 'council.js')
 ];
 
+const indexTargets = [
+  path.join(root, 'KB', 'vector-index.json')
+];
+
 let ok = true;
 for (const file of targets) {
   if (!fs.existsSync(file)) continue;
@@ -47,6 +51,23 @@ for (const file of targets) {
   for (const token of forbidden) {
     if (c.includes(token)) {
       console.log(`FAIL ${path.relative(projectRoot, file)} contém token legado proibido: ${token}`);
+      ok = false;
+    }
+  }
+}
+
+const forbiddenIndexTokens = [
+  'BLOQUEADO_ESCOPO',
+  'AGUARDANDO_SOLICITANTE',
+  'AGUARDANDO_RESPOSTA_SOLICITANTE',
+  'BLOQUEADO_SEM_RESPOSTA_SOLICITANTE'
+];
+for (const file of indexTargets) {
+  if (!fs.existsSync(file)) continue;
+  const c = fs.readFileSync(file, 'utf-8');
+  for (const token of forbiddenIndexTokens) {
+    if (c.includes(token)) {
+      console.log(`FAIL ${path.relative(projectRoot, file)} contém token legado proibido no índice KB: ${token}`);
       ok = false;
     }
   }
