@@ -13,7 +13,17 @@ if(decision==='approve'){
   const g=validateGate(t); if(!g.ok) block(`Gate inválido na fase ${t.phaseName}. Campos ausentes: ${g.missing.join(', ')}`,'dependency');
   if(t.phaseName==='CONSELHO-Fase1' && !t.questionMessageRef) block('CONSELHO-Fase1 exige questionMessageRef.','solicitante');
   if(t.phaseName==='REPORT-SOLICITANTE' && !t.solicitanteReplyRef) block('REPORT-SOLICITANTE exige solicitanteReplyRef.','solicitante');
-  let next=(t.phase||1)+1; if(t.phaseName==='CONSELHO_SE_REPROVADO') next=5; next=Math.min(next,13);
+
+  const nextByPhase = {
+    1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8, 8: 9,
+    9: 11, // happy path: VALIDACAO -> CONSELHO_Final_Aprovado
+    10: 5, // rework path: CONSELHO_SE_REPROVADO -> MEGA_BRAIN
+    11: 12,
+    12: 13,
+    13: 13
+  };
+  const next = nextByPhase[t.phase || 1] || 13;
+
   applyPhase(t,next); t.status=(next===13?'done':'in_progress'); t.waitingOn='none'; t.blockedReason=null;
   t.history.push({at:now(),event:'review_approved',by:'review-lead',nextPhase:t.phaseName});
 }else{
