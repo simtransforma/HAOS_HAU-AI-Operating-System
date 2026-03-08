@@ -1,0 +1,12 @@
+{
+  "name": "haos-cli",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CLI de setup do HAOS",
+  "bin": {
+    "haos-cli": "./scripts/haos-cli.mjs"
+  },
+  "scripts": {
+    "setup": "node ./scripts/haos-cli.mjs setup"
+  }
+}

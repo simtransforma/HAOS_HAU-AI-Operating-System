@@ -1,0 +1,25 @@
+.openclaw/
+_analysis/
+AGENTS.md
+BOOTSTRAP.md
+HEARTBEAT.md
+IDENTITY.md
+SOUL.md
+TOOLS.md
+secrets/
+maturador-desktop/runtime-web/
+maturador-desktop/tmp/
+
+# --- Sensitive / local-only ---
+**/.env
+**/.env.*
+!**/.env.example
+**/*secret*
+**/*token*
+**/*credential*
+**/service-account*.json
+**/oauth*.json
+memory/
+transcricoes/
+.haos/
+HAOS/KB/*.json

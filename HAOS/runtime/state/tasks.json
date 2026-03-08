@@ -1,0 +1,24 @@
+[
+  {
+    "id": "HAOS-0003",
+    "objective": "Go Live HAOS produção",
+    "squad": "acquisition",
+    "squadOwner": "campaign-optimizer",
+    "status": "planning",
+    "phase": 1,
+    "phaseName": "intake",
+    "gate": "A",
+    "owner": "orquestrador-haos",
+    "createdAt": "2026-03-03T17:09:40.458Z",
+    "updatedAt": "2026-03-03T17:09:40.459Z",
+    "blockers": [],
+    "history": [
+      {
+        "at": "2026-03-03T17:09:40.459Z",
+        "event": "created",
+        "by": "orquestrador-haos",
+        "squad": "acquisition"
+      }
+    ]
+  }
+]

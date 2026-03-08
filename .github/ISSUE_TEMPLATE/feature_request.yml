@@ -1,0 +1,14 @@
+name: Feature request
+about: Sugerir melhoria
+title: "[FEAT] "
+labels: enhancement
+body:
+  - type: textarea
+    attributes:
+      label: Objetivo
+  - type: textarea
+    attributes:
+      label: Proposta
+  - type: textarea
+    attributes:
+      label: Critérios de aceite

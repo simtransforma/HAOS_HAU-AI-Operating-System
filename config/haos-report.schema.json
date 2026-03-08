@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HAOS Report Line",
+  "type": "object",
+  "required": ["etapa", "agente", "acao", "evidencia", "status"],
+  "properties": {
+    "etapa": {
+      "type": "string",
+      "enum": [
+        "ABERTURA",
+        "CONSELHO",
+        "MEGA_BRAIN",
+        "DIRETOR",
+        "ESTRATEGISTA",
+        "EXECUCAO",
+        "VALIDACAO",
+        "CONSELHO_FINAL",
+        "ENTREGA",
+        "REGISTRO"
+      ]
+    },
+    "agente": { "type": "string", "minLength": 1 },
+    "acao": { "type": "string", "minLength": 1 },
+    "evidencia": { "type": "string", "minLength": 1 },
+    "status": { "type": "string", "minLength": 2 }
+  },
+  "additionalProperties": false
+}

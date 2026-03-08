@@ -1,0 +1,25 @@
+{
+  "name": "haos-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "HAOS - HAU AI Operating System runtime",
+  "bin": {
+    "haos": "bin/haos.js"
+  },
+  "scripts": {
+    "haos:setup": "node scripts/setup.js",
+    "haos:doctor": "node scripts/doctor.js",
+    "haos:start": "node scripts/start.js",
+    "haos:new-task": "node scripts/new-task.js",
+    "haos:status": "node scripts/status.js",
+    "haos:review": "node scripts/review.js",
+    "haos:council": "node scripts/council.js",
+    "haos:blocker": "node scripts/blocker.js",
+    "haos:dashboard": "node scripts/dashboard.js",
+    "haos:migrate": "node scripts/migrate-tasks.js",
+    "haos:report": "node scripts/daily-report.js",
+    "haos:golive": "node scripts/golive-check.js",
+    "haos:kb-build": "python scripts/kb_build_local.py",
+    "haos:kb-search": "node scripts/kb-search.js"
+  }
+}

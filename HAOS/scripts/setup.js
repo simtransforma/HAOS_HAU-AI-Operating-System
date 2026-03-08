@@ -1,0 +1,11 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const root = process.cwd();
+const dirs = ['runtime', 'runtime/logs', 'runtime/state', 'runtime/reports', 'vault'];
+dirs.forEach(d => fs.mkdirSync(path.join(root, d), { recursive: true }));
+const envExamplePath = path.join(root, '.env.example');
+const envPath = path.join(root, '.env');
+const envTemplate = 'HAOS_ENV=dev\nVAULT_PROVIDER=local\nVAULT_PATH=./vault\n';
+if (!fs.existsSync(envExamplePath)) fs.writeFileSync(envExamplePath, envTemplate);
+if (!fs.existsSync(envPath)) fs.writeFileSync(envPath, envTemplate);
+console.log('HAOS setup concluído. Próximo passo: npm run haos:doctor');
