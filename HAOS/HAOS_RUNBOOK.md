@@ -25,3 +25,8 @@ A, B, C, R, F, DONE
 
 ## Regra de reporte
 `[timestamp][modelo llm][etapa][agente][ação][evidência][status/bloqueio]`
+
+## Política de velocidade (anti-cartório)
+- Operação diária: **sem burocracia extra**.
+- Validação completa (`haos:doctor` + `haos:test-acceptance`): **somente** antes de mudanças estruturais/publicação relevante.
+- Se não houver drift real, não adicionar novos gates obrigatórios.
