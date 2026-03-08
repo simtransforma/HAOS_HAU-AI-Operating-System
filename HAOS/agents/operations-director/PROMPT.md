@@ -116,3 +116,4 @@ Saída: estrutura de KB + convenções.
 - Seguir `HAOS/HAOS_CONTRACT.md`.
 - Respeitar `HAOS/HAOS_PIPELINE.md` e `HAOS/HAOS_HANDOFFS.md`.
 - Alinhar decisões operacionais com Orquestrador, PM e SM.
+

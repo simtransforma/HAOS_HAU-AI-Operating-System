@@ -36,24 +36,14 @@ function ensureState() {
   fs.mkdirSync(REPORT_DIR, { recursive: true });
   if (!fs.existsSync(TASKS_FILE)) fs.writeFileSync(TASKS_FILE, '[]\n');
 }
-
-function loadTasks() {
-  ensureState();
-  return JSON.parse(fs.readFileSync(TASKS_FILE, 'utf-8'));
-}
-
-function saveTasks(tasks) {
-  fs.writeFileSync(TASKS_FILE, JSON.stringify(tasks, null, 2) + '\n');
-}
-
+function loadTasks() { ensureState(); return JSON.parse(fs.readFileSync(TASKS_FILE, 'utf-8')); }
+function saveTasks(tasks) { fs.writeFileSync(TASKS_FILE, JSON.stringify(tasks, null, 2) + '\n'); }
 function now() { return new Date().toISOString(); }
 function nextId(tasks) { return `HAOS-${String(tasks.length + 1).padStart(4, '0')}`; }
-
 function normalizeSquad(input = '') {
   const v = input.toLowerCase().replace(/[^a-z]/g, '');
   return Object.keys(SQUAD_OWNERS).includes(v) ? v : 'produtotech';
 }
-
 function applyPhase(task, phase) {
   const p = PHASES[phase] || PHASES[1];
   task.phase = phase;
@@ -62,7 +52,6 @@ function applyPhase(task, phase) {
   task.owner = p.owner === 'squad-owner' ? (task.squadOwner || 'squad-owner') : p.owner;
   if (phase === 13) task.status = 'done';
 }
-
 function parseEnvFile() {
   const p = path.join(ROOT, '.env');
   if (!fs.existsSync(p)) return {};

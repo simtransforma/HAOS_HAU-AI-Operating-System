@@ -1,36 +1,25 @@
 # HAOS_HANDOFFS.md
 
-## Regra
-Nenhuma etapa troca de mão sem pacote mínimo completo.
-
 ## Pacote mínimo de handoff
-- contexto e objetivo da etapa
+- contexto e objetivo
 - decisões tomadas
-- evidências (links/logs/prints/IDs)
+- evidências (links/logs/refs)
 - riscos e pendências
-- próxima ação recomendada
-- linha de reporte no padrão obrigatório
+- próxima ação
+- linha de reporte padrão
 
-## Cadeia de handoffs (rito v2)
-1. ABERTURA -> CONSELHO-Fase1
-2. CONSELHO-Fase1 -> REPORT-SOLICITANTE
-3. REPORT-SOLICITANTE -> CONSELHO-Fase2
-4. CONSELHO-Fase2 -> MEGA_BRAIN
-5. MEGA_BRAIN -> DIRETOR
-6. DIRETOR -> ESTRATEGISTA
-7. ESTRATEGISTA -> EXECUCAO
-8. EXECUCAO -> VALIDACAO
-9. VALIDACAO reprovado -> CONSELHO_SE_REPROVADO -> MEGA_BRAIN (até 3 ciclos)
-10. VALIDACAO aprovado -> CONSELHO_Final_Aprovado -> ENTREGA -> REGISTRO
+## Handoffs críticos Fase1/Report
+### CONSELHO-Fase1 -> REPORT-SOLICITANTE
+- `question_block`
+- `question_sent_at`
+- `question_message_ref`
 
-## Regra de reprovação
-- Cada reprovação deve registrar causa e ação corretiva.
-- Loop no `CONSELHO_SE_REPROVADO`: **máx 3** ciclos.
-- Ultrapassando 3 ciclos: escalar decisão ao solicitante.
+### REPORT-SOLICITANTE -> CONSELHO-Fase2
+- `solicitante_reply_ref`
+- `scope_delta`
+- `decision_constraints`
 
-## REGISTRO e trilha Obsidian
-- O handoff final para REGISTRO deve incluir link/caminho da documentação em:
-  `Tarefas/Projetos/<tarefa-ou-projeto>`
+Sem esses campos, handoff inválido.
 
-## Formato obrigatório de reporte
-`[timestamp][modelo llm][etapa][agente][ação][evidência][status/bloqueio]`
+## Fluxo de handoff
+ABERTURA -> CONSELHO-Fase1 -> REPORT-SOLICITANTE -> CONSELHO-Fase2 -> MEGA_BRAIN -> DIRETOR -> ESTRATEGISTA -> EXECUCAO -> VALIDACAO -> (reprovado: CONSELHO_SE_REPROVADO -> MEGA_BRAIN) -> CONSELHO_Final_Aprovado -> ENTREGA -> REGISTRO

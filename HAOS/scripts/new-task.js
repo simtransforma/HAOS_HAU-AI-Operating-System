@@ -12,9 +12,8 @@ const squad = normalizeSquad((squadArg || '').split('=')[1] || 'produtotech');
 const squadOwner = SQUAD_OWNERS[squad];
 
 const tasks = loadTasks();
-const id = nextId(tasks);
 const task = {
-  id,
+  id: nextId(tasks),
   objective,
   squad,
   squadOwner,
@@ -24,6 +23,11 @@ const task = {
   gate: 'A',
   owner: 'orquestrador-haos',
   reproveCycles: 0,
+  questionBlockSent: false,
+  questionMessageRef: null,
+  solicitanteReplyReceived: false,
+  solicitanteReplyRef: null,
+  waitingOn: 'none',
   createdAt: now(),
   updatedAt: now(),
   blockers: [],
@@ -33,6 +37,4 @@ applyPhase(task, 1);
 
 tasks.push(task);
 saveTasks(tasks);
-console.log(`Tarefa criada: ${id}`);
-console.log(`Squad: ${task.squad} | Squad owner: ${task.squadOwner}`);
-console.log(`Status: ${task.status} | Fase: ${task.phaseName} | Gate ${task.gate} | Dono: ${task.owner}`);
+console.log(`Tarefa criada: ${task.id} | fase=${task.phaseName} | gate=${task.gate}`);

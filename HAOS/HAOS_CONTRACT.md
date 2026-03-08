@@ -1,30 +1,18 @@
 # HAOS_CONTRACT.md
 
-## 1) Regra de autoridade
-- O main atua como **orquestrador**.
-- Execução operacional é sempre delegada ao especialista da squad.
-- Decisões de direção passam por Conselho.
+## Regras invioláveis
+1. Toda tarefa operacional inicia no rito HAOS v2 completo.
+2. Main atua como orquestrador; execução operacional é delegada ao especialista.
+3. Sem pular etapas, sem pular evidência.
+4. Reprovação volta para `CONSELHO_SE_REPROVADO` (máx 3 ciclos).
+5. REGISTRO final é obrigatório (memória/log + Obsidian).
+6. Formato obrigatório de reporte:
+   `[timestamp][modelo llm][etapa][agente][ação][evidência][status/bloqueio]`
+7. Exceção `#`: modo direto sem rito para dúvidas/consultas/tarefas simples.
+8. Em tarefa complexa no rito v2, `CONSELHO-Fase1` exige questionamento explícito ao solicitante e `REPORT-SOLICITANTE` exige resposta explícita do solicitante. Sem isso, a tarefa fica bloqueada e não pode avançar para `CONSELHO-Fase2`.
 
-## 2) Regras invioláveis
-1. Toda tarefa operacional começa no rito HAOS v2 completo.
-1.1 Exceção: mensagens do Gian iniciadas com `#` entram em modo direto (sem rito), para dúvidas/consultas/tarefas simples.
-2. Main não executa implementação operacional em modo solo.
-3. Toda etapa deve ter evidência objetiva.
-4. Reprovação exige retorno ao fluxo via `CONSELHO_SE_REPROVADO`.
-5. Loop de reprovação é limitado a **3 ciclos**.
-6. Registro final é obrigatório (inclui Obsidian organizado por tarefa/projeto).
-7. Mensageria externa segue política de segurança definida em USER.md/MEMORY.md.
+## Definição de violação
+Constitui violação marcar `CONSELHO-Fase1` como `OK` sem bloco de perguntas enviado, ou marcar `REPORT-SOLICITANTE` como `OK` sem resposta do solicitante referenciada.
 
-## 3) Fluxo obrigatório
+## Fluxo oficial
 `ABERTURA -> CONSELHO-Fase1 -> REPORT-SOLICITANTE -> CONSELHO-Fase2 -> MEGA_BRAIN -> DIRETOR -> ESTRATEGISTA -> EXECUCAO -> VALIDACAO -> (se reprovado: CONSELHO_SE_REPROVADO [máx 3] -> MEGA_BRAIN) -> CONSELHO_Final_Aprovado -> ENTREGA -> REGISTRO`
-
-## 4) Formato obrigatório de reporte
-`[timestamp][modelo llm][etapa][agente][ação][evidência][status/bloqueio]`
-
-Sem pular etapas, sem pular agentes envolvidos, sem pular evidência.
-
-## 5) Definition of Done
-Uma tarefa só fecha quando:
-- passou pelos gates obrigatórios;
-- tem entrega com evidências;
-- tem REGISTRO final em memória/log + Obsidian em `Tarefas/Projetos/<tarefa-ou-projeto>/`.

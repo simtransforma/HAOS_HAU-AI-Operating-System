@@ -25,7 +25,7 @@
 
 ## Diagnóstico por Fase (Rito Atual)
 
-- **F0 Preparação:** parcialmente coberta (intake/briefing existe, critérios podem ficar mais explícitos).
+- **F0 Preparação:** parcialmente coberta (ABERTURA/briefing existe, critérios podem ficar mais explícitos).
 - **F1 Estratégia:** coberta.
 - **F2 Produção:** coberta por agentes/scripts.
 - **F3 Implementação:** coberta (publicação/go-live), melhorar checklist por contexto.
@@ -49,5 +49,6 @@ A revisão é considerada aceita quando:
 3. Evidências de referência foram citadas por arquivo real.
 4. Documentação consolidada foi publicada no repositório.
 5. Espelho foi publicado na pasta operacional externa.
+
 
 

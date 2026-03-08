@@ -1,9 +1,8 @@
-# Source of Truth — HAOS
+# SOURCE_OF_TRUTH
 
-A fonte oficial operacional do rito e governança é a pasta HAOS/.
+A fonte oficial operacional do HAOS é a pasta `HAOS/`.
 
-Em caso de conflito entre documentação de docs/ e HAOS/, prevalece HAOS/.
+Em caso de conflito com documentos explicativos em `docs/`, prevalece `HAOS/`.
 
-Rito oficial único: HAOS v2.
+Rito oficial único: v2.
 Mission Control: ideia futura (não implementado no core).
-

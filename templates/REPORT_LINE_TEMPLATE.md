@@ -1,25 +1,18 @@
 # Template de Linha de Reporte
-
 Formato único obrigatório:
+`[timestamp][modelo llm][etapa][agente][ação][evidência][status/bloqueio]`
 
-`[etapa][agente][ação][evidência][status/bloqueio]`
+## Status permitidos
+- OK
+- BLOQUEADO_AGUARDANDO_SOLICITANTE
+- BLOQUEADO_AGUARDANDO_VALIDACAO
+- REPROVADO
+- NOK
 
-## Etapas oficiais (usar exatamente)
-- ABERTURA
-- CONSELHO-Fase1
-- CONSELHO-Fase2
-- REPORT-SOLICITANTE
-- EXECUÇÃO
-- VALIDAÇÃO
-- REGISTRO
+## Regras extras por fase
+- `CONSELHO-Fase1` exige evidência de pergunta enviada ao solicitante.
+- `REPORT-SOLICITANTE` exige evidência de resposta do solicitante.
 
 ## Exemplos
-- `[ABERTURA][orquestrador][Abri tarefa HAOS-first][task-id + objetivo][OK]`
-- `[CONSELHO-Fase1][strategy-lead][Defini prioridade e direção][ata + critérios][OK]`
-- `[CONSELHO-Fase2][tech-lead][Validei arquitetura e viabilidade][parecer técnico][OK]`
-- `[REPORT-SOLICITANTE][pm][Detalhei tarefas, donos e cronograma][plano versionado][OK]`
-- `[EXECUÇÃO][dev][Implementei ajustes previstos][diff + testes][OK]`
-- `[VALIDAÇÃO][qa][Executei checklist final][checklist + logs][OK]`
-- `[REGISTRO][orquestrador][Fechei tarefa e consolidei evidências][relatório final][OK]`
-
-
+[2026-03-08T01:09:00-03:00][gpt-5.3-codex][CONSELHO-Fase1][project-director][Debati contexto e emiti perguntas ao solicitante][ata + ref da mensagem com perguntas][BLOQUEADO_AGUARDANDO_SOLICITANTE]
+[2026-03-08T01:16:00-03:00][gpt-5.3-codex][REPORT-SOLICITANTE][orquestrador-haos][Consolidei as respostas do solicitante e atualizei o escopo][ref da resposta + resumo consolidado][OK]
