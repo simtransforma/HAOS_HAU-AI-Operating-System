@@ -9,6 +9,25 @@ Classificar toda mensagem em exatamente um modo:
 
 Regra: o runbook só entra na fase `ABERTURA` quando a triagem classificar a entrada como **rito**.
 
+### Recibo mínimo da triagem (interno)
+Registrar uma linha curta:
+- `route=direct|specialist|department|rito`
+- `trigger=#|@|none`
+- `agents=...`
+- `rito=true|false`
+
+### Escalonamento conservador
+- Ambíguo entre direto e rito -> **direto**.
+- Ambíguo entre especialista e rito -> **especialista**.
+- Rito só com gatilho explícito (`#`).
+
+### Guardrails de execução
+1. `#` é o único gatilho que abre rito por padrão.
+2. Sem `#`, nunca abrir rito por inferência.
+3. `@agente` e `@departamento` sem `#` são consulta, não rito.
+4. Em ambiguidade, escolher o modo menos escalado.
+5. Erro repetido do mesmo tipo vira item de correção sistêmica.
+
 ## Operação padrão (rito v2)
 1) ABERTURA
 2) CONSELHO-Fase1 (debate + perguntas ao solicitante)

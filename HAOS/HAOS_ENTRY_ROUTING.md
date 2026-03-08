@@ -41,3 +41,22 @@ Quando a mensagem for sem `#` e expressar “debater primeiro e abrir rito depoi
 1. executar agora em modo especialista/departamento;
 2. não abrir rito no mesmo turno;
 3. abrir rito só após nova mensagem iniciando com `#`.
+
+## Guardrails de execução (curto e obrigatório)
+1. `#` é o único gatilho que abre rito por padrão.
+2. Sem `#`, nunca abrir rito por inferência.
+3. `@agente` e `@departamento` sem `#` são consulta (não execução no rito).
+4. Em ambiguidade, escolher o modo menos escalado.
+5. Erro repetido do mesmo tipo deixa de ser exceção e vira item de correção sistêmica.
+
+## Escalonamento conservador
+- Ambíguo entre direto e rito -> **direto**.
+- Ambíguo entre especialista e rito -> **especialista**.
+- Rito só com gatilho explícito.
+
+## Recibo mínimo de roteamento (interno)
+Registrar uma linha curta por entrada:
+- `route=direct|specialist|department|rito`
+- `trigger=#|@|none`
+- `agents=...`
+- `rito=true|false`
