@@ -4,10 +4,10 @@ Use este bloco no início de toda tarefa operacional:
 
 ```
 Modo: HAOS-first
-Rito oficial: ABERTURA -> CONSELHO ESTRATÉGICO -> CONSELHO TÉCNICO -> PLANO DE EXECUÇÃO -> EXECUÇÃO -> VALIDAÇÃO -> REGISTRO
-Conselho Estratégico: <acionado>
-Conselho Técnico: <acionado>
-Plano de Execução: <definido>
+Rito oficial: ABERTURA -> CONSELHO-Fase1 -> REPORT-SOLICITANTE -> CONSELHO-Fase2 -> MEGA_BRAIN -> DIRETOR -> ESTRATEGISTA -> EXECUCAO -> VALIDACAO -> (se reprovado: CONSELHO_SE_REPROVADO [máx 3] -> MEGA_BRAIN) -> CONSELHO_Final_Aprovado -> ENTREGA -> REGISTRO
+CONSELHO-Fase1: <acionado>
+CONSELHO-Fase2: <acionado>
+REPORT-SOLICITANTE: <definido>
 Main: orquestrador (sem execução solo)
 Squad: <definida>
 Delegação: ativa
@@ -24,3 +24,5 @@ Status do gate: <APROVADO | BLOQUEADO>
 ```
 
 Se BLOQUEADO: não executar, informar motivo e pedir ajuste mínimo necessário.
+
+

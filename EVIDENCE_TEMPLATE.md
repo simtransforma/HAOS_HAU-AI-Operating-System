@@ -28,7 +28,7 @@
 - Teste 2:
 - Teste 3:
 
-## CONSELHO_FINAL
+## CONSELHO_Final_Aprovado
 - Go/No-Go:
 - Justificativa:
 
@@ -48,6 +48,8 @@ Use sempre este formato:
 - [ESTRATEGISTA][<agente>][<ação>][<evidência>][OK|BLOQUEIO:<motivo>]
 - [EXECUCAO][<agente>][<ação>][<evidência>][OK|BLOQUEIO:<motivo>]
 - [VALIDACAO][<agente>][<ação>][<evidência>][OK|BLOQUEIO:<motivo>]
-- [CONSELHO_FINAL][<agente>][<ação>][<evidência>][OK|BLOQUEIO:<motivo>]
+- [CONSELHO_Final_Aprovado][<agente>][<ação>][<evidência>][OK|BLOQUEIO:<motivo>]
 - [ENTREGA][<agente>][<ação>][<evidência>][OK|BLOQUEIO:<motivo>]
 - [REGISTRO][<agente>][<ação>][<evidência>][OK|BLOQUEIO:<motivo>]
+
+

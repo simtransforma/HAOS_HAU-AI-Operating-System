@@ -41,3 +41,4 @@ Toda entrega concluída precisa ser registrada em memória/log e também em Obsi
 Separação de vaults:
 - **Vault de sistema HAOS**: documentação do método/sistema (sem tarefas operacionais).
 - **Vault de tarefas/projetos**: execução operacional em `Tarefas/Projetos/<tarefa-ou-projeto>/`.
+

@@ -1,13 +1,8 @@
-# HAOS_PROCESS_STATE_MACHINE.md
+# HAOS Process State Machine (v2 oficial)
 
-Fluxo obrigatório:
+## Fluxo canônico
+ABERTURA -> CONSELHO-Fase1 -> REPORT-SOLICITANTE -> CONSELHO-Fase2 -> MEGA_BRAIN -> DIRETOR -> ESTRATEGISTA -> EXECUCAO -> VALIDACAO -> (se reprovado: CONSELHO_SE_REPROVADO [máx 3] -> MEGA_BRAIN) -> CONSELHO_Final_Aprovado -> ENTREGA -> REGISTRO
 
-ABERTURA -> CONSELHO -> MEGA_BRAIN -> DIRETOR -> ESTRATEGISTA -> EXECUCAO -> VALIDACAO -> CONSELHO_FINAL -> ENTREGA -> REGISTRO
-
-Regras de retorno por erro:
-- Erro técnico de execução/diagnóstico -> retorna para ESTRATEGISTA
-- Erro de plano/escopo/critérios -> retorna para DIRETOR
-- Conflito de direção/prioridade/risco -> retorna para CONSELHO
-
-Sem pulo de etapa.
-Sem execução solo no main para tarefa operacional.
+## Regras
+- Loop de reprovação: máximo 3 ciclos.
+- Source of truth operacional: `HAOS/`.

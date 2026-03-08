@@ -9,7 +9,7 @@
 - review-lead
 - qa
 
-### 2) Conselho estratégico
+### 2) CONSELHO-Fase1
 - project-director
 - operations-director
 - strategy-director
@@ -50,9 +50,10 @@
 - media-buyer-meta
 - media-buyer-google
 - media-buyer-tiktok
-- campaign-optimizer
+- traffic-master
 
 ## C) Regra de operação
 - traffic-master consolida estratégia de mídia e coordena execução multicanal.
 - tracking-engineer e attribution-analyst permanecem separados para profundidade técnica.
 - Toda entrega respeita HAOS_CONTRACT, gates e handoffs.
+

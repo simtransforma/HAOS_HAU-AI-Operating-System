@@ -34,7 +34,7 @@ Garantir que o rito HAOS v2 e a separação de vaults continuam íntegros.
 - [ ] `CHANGELOG.md` atualizado com alterações relevantes.
 
 ### 6) Consistência de repositório
-- [ ] Mudanças de processo estão com commit em `openclaw-xtreme2`.
+- [ ] Mudanças de processo estão com commit em `HAOS_HAU-AI-Operating-System`.
 - [ ] Push aplicado em `origin/main`.
 - [ ] Não há drift entre docs principais do HAOS.
 
@@ -44,3 +44,4 @@ Garantir que o rito HAOS v2 e a separação de vaults continuam íntegros.
 - Resultado geral: OK / NOK
 - Ações corretivas:
 - Prazo de correção:
+

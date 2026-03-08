@@ -8,9 +8,9 @@
 
 ## Gate 1 — Fases obrigatórias (sequência oficial)
 - [ ] ABERTURA
-- [ ] CONSELHO ESTRATÉGICO
-- [ ] CONSELHO TÉCNICO
-- [ ] PLANO DE EXECUÇÃO
+- [ ] CONSELHO-Fase1
+- [ ] CONSELHO-Fase2
+- [ ] REPORT-SOLICITANTE
 - [ ] EXECUÇÃO
 - [ ] VALIDAÇÃO
 - [ ] REGISTRO
@@ -23,3 +23,5 @@
 ## Gate 3 — Comunicação
 - [ ] Atualizações com anti-silêncio atendido
 - [ ] Resumo final enviado no formato padrão: [etapa][agente][ação][evidência][status/bloqueio]
+
+

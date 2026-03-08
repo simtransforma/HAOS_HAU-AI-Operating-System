@@ -1,4 +1,4 @@
-# openclaw-xtreme2
+# HAOS_HAU-AI-Operating-System
 
 Base operacional do HAOS.
 
@@ -27,4 +27,6 @@ npm run haos:doctor
 npm run haos:golive
 npm run haos:start
 ```
+
+
 

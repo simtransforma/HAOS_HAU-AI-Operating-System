@@ -15,17 +15,25 @@ if (!t) {
 }
 
 if (decision === 'approve') {
-  const next = Math.min((t.phase || 1) + 1, 6);
+  let next = (t.phase || 1) + 1;
+  if (t.phase === 10) next = 5; // conselho reprovado volta ao MEGA_BRAIN
+  next = Math.min(next, 13);
   applyPhase(t, next);
-  t.status = next === 6 ? 'done' : 'in_progress';
+  t.status = next === 13 ? 'done' : 'in_progress';
   t.history.push({ at: now(), event: 'review_approved', by: 'review-lead', nextPhase: t.phaseName });
 } else {
-  t.status = 'rework';
-  const back = Math.max((t.phase || 2) - 1, 2);
-  applyPhase(t, back);
-  t.history.push({ at: now(), event: 'review_rejected', by: 'review-lead', returnedTo: t.phaseName });
+  // Reprovação formal entra no CONSELHO_SE_REPROVADO
+  t.reproveCycles = (t.reproveCycles || 0) + 1;
+  if (t.reproveCycles > 3) {
+    t.status = 'blocked';
+    t.history.push({ at: now(), event: 'reprove_limit_reached', by: 'review-lead', cycles: t.reproveCycles });
+  } else {
+    t.status = 'rework';
+    applyPhase(t, 10);
+    t.history.push({ at: now(), event: 'review_rejected', by: 'review-lead', returnedTo: t.phaseName, cycles: t.reproveCycles });
+  }
 }
 
 t.updatedAt = now();
 saveTasks(tasks);
-console.log(`${taskId}: ${decision.toUpperCase()} | status=${t.status} | fase=${t.phaseName} | gate=${t.gate} | dono=${t.owner}`);
+console.log(`${taskId}: ${decision.toUpperCase()} | status=${t.status} | fase=${t.phaseName} | gate=${t.gate} | dono=${t.owner} | ciclos=${t.reproveCycles || 0}`);

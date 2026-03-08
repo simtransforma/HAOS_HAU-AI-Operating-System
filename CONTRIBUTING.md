@@ -1,4 +1,4 @@
-# Contributing to openclaw-xtreme2
+# Contributing to HAOS_HAU-AI-Operating-System
 
 Obrigado por contribuir.
 
@@ -17,3 +17,5 @@ Mudanças de processo devem respeitar o rito HAOS v2 documentado em `HAOS/`.
 - [ ] Docs atualizadas
 - [ ] Sem quebrar regras de segurança
 - [ ] Evidência de validação
+
+

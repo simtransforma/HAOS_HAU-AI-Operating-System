@@ -38,3 +38,4 @@ O HAOS é um método próprio, com identidade operacional definida em:
 - Rito HAOS v2 com fases de conselho (Fase1/Fase2 + report ao solicitante).
 - Loop de reprovação controlado (máx 3 ciclos).
 - Exceção de comando rápido (`#`) para modo direto sem rito em tarefas simples.
+

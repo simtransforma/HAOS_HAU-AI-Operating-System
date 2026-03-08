@@ -48,3 +48,4 @@ Mensagens iniciadas com `#` entram em modo direto (sem rito), para:
 4. `HAOS/README.md`
 5. `HAOS/HAOS_PIPELINE.md`
 6. `HAOS/HAOS_CONTRACT.md`
+

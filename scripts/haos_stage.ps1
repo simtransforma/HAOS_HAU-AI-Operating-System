@@ -1,5 +1,5 @@
 param(
-  [Parameter(Mandatory = $true)][ValidateSet('ABERTURA','CONSELHO','MEGA_BRAIN','DIRETOR','ESTRATEGISTA','EXECUCAO','VALIDACAO','CONSELHO_FINAL','ENTREGA','REGISTRO')][string]$Stage,
+  [Parameter(Mandatory = $true)][ValidateSet('ABERTURA','CONSELHO-Fase1','REPORT-SOLICITANTE','CONSELHO-Fase2','MEGA_BRAIN','DIRETOR','ESTRATEGISTA','EXECUCAO','VALIDACAO','CONSELHO_SE_REPROVADO','CONSELHO_Final_Aprovado','ENTREGA','REGISTRO')][string]$Stage,
   [string]$StateFile = "$PSScriptRoot\..\.haos\state.json",
   [string]$AuditLog = "$PSScriptRoot\..\.haos\audit.log",
   [string]$Evidence = ""
@@ -9,7 +9,7 @@ $ErrorActionPreference = 'Stop'
 if (!(Test-Path $StateFile)) { throw "State file not found. Run haos_run.ps1 first." }
 
 $state = Get-Content -LiteralPath $StateFile -Raw | ConvertFrom-Json
-$stages = @('ABERTURA','CONSELHO','MEGA_BRAIN','DIRETOR','ESTRATEGISTA','EXECUCAO','VALIDACAO','CONSELHO_FINAL','ENTREGA','REGISTRO')
+$stages = @('ABERTURA','CONSELHO-Fase1','REPORT-SOLICITANTE','CONSELHO-Fase2','MEGA_BRAIN','DIRETOR','ESTRATEGISTA','EXECUCAO','VALIDACAO','CONSELHO_SE_REPROVADO','CONSELHO_Final_Aprovado','ENTREGA','REGISTRO')
 $currentIndex = [array]::IndexOf($stages, [string]$state.current_stage)
 $targetIndex = [array]::IndexOf($stages, $Stage)
 
@@ -28,3 +28,5 @@ $state | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $StateFile -Encoding
 $line = "$(Get-Date -Format o) | STAGE | $($state.task) | $Stage | Evidence=$Evidence"
 Add-Content -LiteralPath $AuditLog -Value $line -Encoding UTF8
 Write-Output "STAGE_OK: $Stage"
+
+

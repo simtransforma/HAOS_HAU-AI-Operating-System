@@ -7,16 +7,23 @@ const TASKS_FILE = path.join(STATE_DIR, 'tasks.json');
 const REPORT_DIR = path.join(ROOT, 'runtime', 'reports');
 
 const PHASES = {
-  1: { name: 'intake', gate: 'A', owner: 'orquestrador-haos' },
-  2: { name: 'planning', gate: 'B', owner: 'pm' },
-  3: { name: 'execution', gate: 'C', owner: 'squad-owner' },
-  4: { name: 'review', gate: 'D', owner: 'review-lead' },
-  5: { name: 'council', gate: 'D', owner: 'project-director' },
-  6: { name: 'publish-optimize', gate: 'DONE', owner: 'operations-director' }
+  1: { name: 'ABERTURA', gate: 'A', owner: 'orquestrador-haos' },
+  2: { name: 'CONSELHO-Fase1', gate: 'A', owner: 'project-director' },
+  3: { name: 'REPORT-SOLICITANTE', gate: 'A', owner: 'orquestrador-haos' },
+  4: { name: 'CONSELHO-Fase2', gate: 'B', owner: 'project-director' },
+  5: { name: 'MEGA_BRAIN', gate: 'B', owner: 'orquestrador-haos' },
+  6: { name: 'DIRETOR', gate: 'B', owner: 'project-director' },
+  7: { name: 'ESTRATEGISTA', gate: 'B', owner: 'strategy-director' },
+  8: { name: 'EXECUCAO', gate: 'B', owner: 'squad-owner' },
+  9: { name: 'VALIDACAO', gate: 'C', owner: 'review-lead' },
+  10: { name: 'CONSELHO_SE_REPROVADO', gate: 'R', owner: 'project-director' },
+  11: { name: 'CONSELHO_Final_Aprovado', gate: 'F', owner: 'project-director' },
+  12: { name: 'ENTREGA', gate: 'F', owner: 'orquestrador-haos' },
+  13: { name: 'REGISTRO', gate: 'DONE', owner: 'orquestrador-haos' }
 };
 
 const SQUAD_OWNERS = {
-  acquisition: 'campaign-optimizer',
+  acquisition: 'traffic-master',
   tracking: 'tracking-engineer',
   creative: 'copy-specialist',
   funnelcrm: 'automation-architect',
@@ -40,7 +47,6 @@ function saveTasks(tasks) {
 }
 
 function now() { return new Date().toISOString(); }
-
 function nextId(tasks) { return `HAOS-${String(tasks.length + 1).padStart(4, '0')}`; }
 
 function normalizeSquad(input = '') {
@@ -54,7 +60,7 @@ function applyPhase(task, phase) {
   task.phaseName = p.name;
   task.gate = p.gate;
   task.owner = p.owner === 'squad-owner' ? (task.squadOwner || 'squad-owner') : p.owner;
-  if (phase === 6) task.status = 'done';
+  if (phase === 13) task.status = 'done';
 }
 
 function parseEnvFile() {

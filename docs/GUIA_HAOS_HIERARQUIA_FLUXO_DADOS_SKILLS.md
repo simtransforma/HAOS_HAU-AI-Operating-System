@@ -9,18 +9,18 @@ HAOS executa o fluxo operacional. Mega-brain apenas referencia estrutura e padr�
 ## 3) Hierarquia operacional (resumo)
 1. Gian (decisor)
 2. main (orquestrador)
-3. Conselho Estratégico
-4. Conselho Técnico
+3. CONSELHO-Fase1
+4. CONSELHO-Fase2
 5. Squad de especialistas
 
 ## 4) Fluxo HAOS (padrão oficial)
-**ABERTURA → CONSELHO ESTRATÉGICO → CONSELHO TÉCNICO → PLANO DE EXECUÇÃO → EXECUÇÃO → VALIDAÇÃO → REGISTRO**
+**ABERTURA → CONSELHO-Fase1 → REPORT-SOLICITANTE → CONSELHO-Fase2 → MEGA_BRAIN → DIRETOR → ESTRATEGISTA → EXECUCAO → VALIDACAO → (se reprovado: CONSELHO_SE_REPROVADO [máx 3] → MEGA_BRAIN) → CONSELHO_Final_Aprovado → ENTREGA → REGISTRO**
 
 ### Definições curtas
 - **ABERTURA:** formaliza objetivo, escopo e dono.
-- **CONSELHO ESTRATÉGICO:** define direção e prioridade.
-- **CONSELHO TÉCNICO:** define viabilidade e abordagem técnica.
-- **PLANO DE EXECUÇÃO:** detalha tarefas, responsáveis e cronograma.
+- **CONSELHO-Fase1:** define direção e prioridade.
+- **CONSELHO-Fase2:** define viabilidade e abordagem técnica.
+- **REPORT-SOLICITANTE:** detalha tarefas, responsáveis e cronograma.
 - **EXECUÇÃO:** realiza o plano com evidência contínua.
 - **VALIDAÇÃO:** confirma qualidade e critério de aceite.
 - **REGISTRO:** publica fechamento e aprendizados.
@@ -32,3 +32,5 @@ HAOS executa o fluxo operacional. Mega-brain apenas referencia estrutura e padr�
 - Estado operacional por projeto.
 - Memória operacional em arquivos versionados.
 - Skills por domínio e risco, com governança em `HAOS/NATIVE_SKILLS_AGENT_RULES.md`.
+
+

@@ -25,7 +25,7 @@ $state = [ordered]@{
   status = 'IN_PROGRESS'
   current_stage = 'ABERTURA'
   stages = @(
-    'ABERTURA','CONSELHO','MEGA_BRAIN','DIRETOR','ESTRATEGISTA','EXECUCAO','VALIDACAO','CONSELHO_FINAL','ENTREGA','REGISTRO'
+    'ABERTURA','CONSELHO-Fase1','REPORT-SOLICITANTE','CONSELHO-Fase2','MEGA_BRAIN','DIRETOR','ESTRATEGISTA','EXECUCAO','VALIDACAO','CONSELHO_SE_REPROVADO','CONSELHO_Final_Aprovado','ENTREGA','REGISTRO'
   )
   updated_at = (Get-Date).ToString('o')
 }
@@ -34,3 +34,5 @@ $state | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath $StateFile -Encoding
 $line = "$(Get-Date -Format o) | STARTED | $TaskTitle | Skill=$SkillName | Gate=OK"
 Add-Content -LiteralPath $AuditLog -Value $line -Encoding UTF8
 Write-Output "HAOS_RUN_OK: $TaskTitle"
+
+

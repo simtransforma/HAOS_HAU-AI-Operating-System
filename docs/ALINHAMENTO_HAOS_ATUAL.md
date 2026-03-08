@@ -1,7 +1,7 @@
 # Revisão de Alinhamento ao Padrão HAOS Atual
 
 > Data: 2026-03-06  
-> Repositório avaliado: `simtransforma/openclaw-xtreme2`  
+> Repositório avaliado: `simtransforma/HAOS_HAU-AI-Operating-System`  
 > Referência de padrão atual: contrato/pipeline/handoffs + rito operacional por fases (F0–F6).
 
 ## Resumo Executivo
@@ -49,3 +49,5 @@ A revisão é considerada aceita quando:
 3. Evidências de referência foram citadas por arquivo real.
 4. Documentação consolidada foi publicada no repositório.
 5. Espelho foi publicado na pasta operacional externa.
+
+

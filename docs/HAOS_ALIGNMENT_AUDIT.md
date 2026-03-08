@@ -1,4 +1,4 @@
-# Auditoria de Alinhamento HAOS — openclaw-xtreme2
+# Auditoria de Alinhamento HAOS — HAOS_HAU-AI-Operating-System
 
 Data: 2026-03-06
 
@@ -40,3 +40,5 @@ Data: 2026-03-06
 ## Pendências
 - Nenhuma pendência crítica.
 - Recomendação: validar em execução real com uma tarefa de teste ponta a ponta.
+
+
