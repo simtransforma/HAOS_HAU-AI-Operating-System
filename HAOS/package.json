@@ -20,6 +20,8 @@
     "haos:report": "node scripts/daily-report.js",
     "haos:golive": "node scripts/golive-check.js",
     "haos:kb-build": "python scripts/kb_build_local.py",
-    "haos:kb-search": "node scripts/kb-search.js"
+    "haos:kb-search": "node scripts/kb-search.js",
+    "haos:update-task": "node scripts/update-task.js",
+    "haos:test-acceptance": "node scripts/test-acceptance.js"
   }
 }

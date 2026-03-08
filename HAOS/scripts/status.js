@@ -1,12 +1,10 @@
-const { loadTasks } = require('./lib');
+const { loadTasks, validateGate } = require('./lib');
 
 const tasks = loadTasks();
-if (!tasks.length) {
-  console.log('Sem tarefas no HAOS ainda.');
-  process.exit(0);
-}
+if (!tasks.length) { console.log('Sem tarefas no HAOS ainda.'); process.exit(0); }
 
 for (const t of tasks) {
-  const b = (t.blockers || []).length;
-  console.log(`${t.id} | phase ${t.phase} (${t.phaseName}) | gate ${t.gate} | owner ${t.owner} | ${t.status} | blockers ${b} | ${t.objective}`);
+  const g = validateGate(t);
+  const missing = g.ok ? '-' : g.missing.join(',');
+  console.log(`${t.id} | ${t.phaseName} | gate ${t.gate}/${t.gateType} | gate_ok=${g.ok} | missing=${missing} | owner=${t.owner} | status=${t.status} | waitingOn=${t.waitingOn || 'none'} | reason=${t.blockedReason || '-'} | ${t.objective}`);
 }
