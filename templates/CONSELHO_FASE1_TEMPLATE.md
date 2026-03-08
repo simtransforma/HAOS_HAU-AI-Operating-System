@@ -13,4 +13,4 @@
 ## Critério de liberação
 - [ ] perguntas enviadas ao solicitante
 - [ ] referência da mensagem registrada
-- [ ] status ajustado para AGUARDANDO_SOLICITANTE
+- [ ] status ajustado para BLOCKED_WAITING_SOLICITANTE (`blocked_waiting_solicitante`)

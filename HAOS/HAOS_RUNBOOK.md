@@ -16,7 +16,7 @@
 13) REGISTRO
 
 ## Tabela de decisão (Fase1/Report)
-- Sem resposta do solicitante -> `AGUARDANDO_SOLICITANTE` (não avança)
+- Sem resposta do solicitante -> `blocked_waiting_solicitante` / `BLOCKED_WAITING_SOLICITANTE` (não avança)
 - Resposta parcial -> `REPORT-SOLICITANTE` continua aberto
 - Resposta suficiente -> libera `CONSELHO-Fase2`
 
