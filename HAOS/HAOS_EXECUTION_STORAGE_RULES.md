@@ -26,6 +26,10 @@ C:\Users\gians\OneDrive\Documentos\Projetos\Agencia HAU - Soluções Digitais\HA
 Todo projeto concluído deve ser documentado em:
 C:\Users\gians\OneDrive\Documentos\Projetos\Agencia HAU - Soluções Digitais\HAO IA Operation System\Obsidian\HAOS-Tarefas-Projetos-Vault\Projetos
 
+Regra fixa adicional (V7+):
+- Toda correção/tarefa operacional concluída também deve ter resumo técnico na:
+C:\Users\gians\OneDrive\Documentos\Projetos\Agencia HAU - Soluções Digitais\HAO IA Operation System\Obsidian\HAOS-Obsidian-Vault
+
 ## 5. VAULT PESSOAL
 A vault:
 C:\Users\gians\OneDrive\Documentos\Projetos\Agencia HAU - Soluções Digitais\HAO IA Operation System\Obsidian
@@ -65,6 +69,15 @@ Se o pedido mencionar algo como:
 - "salva isso"
 e o escopo não estiver 100% claro, eu devo perguntar antes de agir.
 
+## 10. CHECKLIST DE FECHAMENTO OBRIGATÓRIO (NÃO NEGOCIÁVEL)
+Uma tarefa só pode ser considerada concluída quando os 3 itens abaixo forem feitos:
+
+1. entrega validada
+2. registro na vault correta (com caminho do arquivo)
+3. confirmação final no chat contendo o caminho do registro
+
+Regra: se qualquer item do checklist faltar, a tarefa permanece em aberto.
+
 A correção prática é simples: isso precisa ficar em USER.md, MEMORY.md e, se vocês quiserem blindar melhor o OpenClaw, em um normativo do HAOS tipo HAOS_EXECUTION_STORAGE_RULES.md ou incorporado ao RUNBOOK.
 
 O miolo da blindagem é este:
@@ -78,3 +91,5 @@ fora de correção, commit só sob pedido
 cada vault tem função específica
 
 salvamento sempre organizado e com padrão de nome
+
+fechamento obrigatório com checklist e confirmação de caminho
