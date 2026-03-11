@@ -1,6 +1,6 @@
 # HAOS_AGENT_REGISTRY.md
 
-Total de agentes: 27
+Total de agentes: 26
 
 - analyst: PROMPT.md, AGENT_SPEC.md, PLAYBOOK.md, IO_CONTRACT.md
 - architect: PROMPT.md, AGENT_SPEC.md, PLAYBOOK.md, IO_CONTRACT.md
@@ -26,6 +26,5 @@ Total de agentes: 27
 - social-intelligence-agent: PROMPT.md, AGENT_SPEC.md, PLAYBOOK.md, IO_CONTRACT.md
 - strategy-director: PROMPT.md, AGENT_SPEC.md, PLAYBOOK.md, IO_CONTRACT.md
 - tracking-engineer: PROMPT.md, AGENT_SPEC.md, PLAYBOOK.md, IO_CONTRACT.md
-- traffic-master: PROMPT.md, AGENT_SPEC.md, PLAYBOOK.md, IO_CONTRACT.md
 - ux: PROMPT.md, AGENT_SPEC.md, PLAYBOOK.md, IO_CONTRACT.md
 - video-producer: PROMPT.md, AGENT_SPEC.md, PLAYBOOK.md, IO_CONTRACT.md

@@ -52,7 +52,7 @@ const APPROVE_TRANSITIONS = Object.freeze({ 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 
 const REJECT_TRANSITIONS = Object.freeze({ default: 10 });
 
 const SQUAD_OWNERS = {
-  acquisition: 'traffic-master',
+  acquisition: 'strategy-director',
   tracking: 'tracking-engineer',
   creative: 'copy-specialist',
   funnelcrm: 'automation-architect',
