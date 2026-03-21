@@ -1,0 +1,497 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.3.13",
+    "lastTouchedAt": "2026-03-21T22:01:21.244Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-03-21T21:22:19.551Z",
+    "lastRunVersion": "2026.3.13",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "abacus": {
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "kimi-k2.5",
+            "name": "kimi-k2.5 (Custom Provider)",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 32000
+          },
+          {
+            "id": "claude-opus-4-6",
+            "name": "Claude Opus 4.6",
+            "api": "anthropic-messages",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "contextWindow": 200000,
+            "maxTokens": 32000
+          },
+          {
+            "id": "claude-sonnet-4-6",
+            "name": "Claude Sonnet 4.6",
+            "api": "anthropic-messages",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "contextWindow": 200000,
+            "maxTokens": 32000
+          },
+          {
+            "id": "claude-haiku-4-5",
+            "name": "Claude Haiku 4.5",
+            "api": "anthropic-messages",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "contextWindow": 200000,
+            "maxTokens": 16000
+          },
+          {
+            "id": "gemini-3-flash-preview",
+            "name": "Gemini 3 Flash Preview",
+            "api": "openai-completions",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "contextWindow": 1000000,
+            "maxTokens": 32000
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "abacus/kimi-k2.5"
+      },
+      "models": {
+        "abacus/kimi-k2.5": {},
+        "abacus/claude-opus-4-6": {},
+        "abacus/claude-sonnet-4-6": {},
+        "abacus/claude-haiku-4-5": {},
+        "abacus/gemini-3-flash-preview": {}
+      },
+      "workspace": "/home/ubuntu",
+      "blockStreamingDefault": "on",
+      "subagents": {
+        "maxSpawnDepth": 2,
+        "maxChildrenPerAgent": 5,
+        "archiveAfterMinutes": 120,
+        "runTimeoutSeconds": 900
+      }
+    },
+    "list": [
+      {
+        "id": "main",
+        "default": true,
+        "name": "Abaclaw ⚡",
+        "workspace": "/home/ubuntu",
+        "identity": {
+          "name": "Abaclaw",
+          "emoji": "⚡"
+        },
+        "subagents": {
+          "allowAgents": [
+            "*"
+          ]
+        }
+      },
+      {
+        "id": "orquestrador-haos",
+        "name": "Orquestrador HAOS",
+        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/orquestrador-haos",
+        "model": {
+          "primary": "abacus/claude-sonnet-4-6"
+        },
+        "identity": {
+          "name": "Orquestrador HAOS",
+          "emoji": "🎯"
+        },
+        "subagents": {
+          "allowAgents": [
+            "*"
+          ]
+        }
+      },
+      {
+        "id": "project-director",
+        "name": "Project Director",
+        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/project-director",
+        "model": {
+          "primary": "abacus/claude-sonnet-4-6"
+        },
+        "identity": {
+          "name": "Project Director",
+          "emoji": "🎬"
+        },
+        "subagents": {
+          "allowAgents": [
+            "*"
+          ]
+        }
+      },
+      {
+        "id": "operations-director",
+        "name": "Operations Director",
+        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/operations-director",
+        "model": {
+          "primary": "abacus/claude-sonnet-4-6"
+        },
+        "identity": {
+          "name": "Operations Director",
+          "emoji": "⚙️"
+        }
+      },
+      {
+        "id": "strategy-director",
+        "name": "Strategy Director",
+        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/strategy-director",
+        "model": {
+          "primary": "abacus/claude-sonnet-4-6"
+        },
+        "identity": {
+          "name": "Strategy Director",
+          "emoji": "🧭"
+        }
+      },
+      {
+        "id": "architect",
+        "name": "Architect",
+        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/architect",
+        "model": {
+          "primary": "abacus/claude-sonnet-4-6"
+        },
+        "identity": {
+          "name": "Architect",
+          "emoji": "🏗️"
+        }
+      },
+      {
+        "id": "dev",
+        "name": "Dev",
+        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/dev",
+        "model": {
+          "primary": "abacus/claude-opus-4-6"
+        },
+        "identity": {
+          "name": "Dev",
+          "emoji": "💻"
+        }
+      },
+      {
+        "id": "product-engineer-webapps",
+        "name": "Product Engineer Webapps",
+        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/product-engineer-webapps",
+        "model": {
+          "primary": "abacus/claude-haiku-4-5"
+        },
+        "identity": {
+          "name": "Product Engineer",
+          "emoji": "🌐"
+        }
+      },
+      {
+        "id": "integration-engineer",
+        "name": "Integration Engineer",
+        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/integration-engineer",
+        "model": {
+          "primary": "abacus/claude-haiku-4-5"
+        },
+        "identity": {
+          "name": "Integration Engineer",
+          "emoji": "🔌"
+        }
+      },
+      {
+        "id": "devops",
+        "name": "DevOps",
+        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/devops",
+        "model": {
+          "primary": "abacus/claude-haiku-4-5"
+        },
+        "identity": {
+          "name": "DevOps",
+          "emoji": "🚀"
+        }
+      },
+      {
+        "id": "tracking-engineer",
+        "name": "Tracking Engineer",
+        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/tracking-engineer",
+        "model": {
+          "primary": "abacus/claude-haiku-4-5"
+        },
+        "identity": {
+          "name": "Tracking Engineer",
+          "emoji": "📡"
+        }
+      },
+      {
+        "id": "data-engineer",
+        "name": "Data Engineer",
+        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/data-engineer",
+        "model": {
+          "primary": "abacus/claude-haiku-4-5"
+        },
+        "identity": {
+          "name": "Data Engineer",
+          "emoji": "🗄️"
+        }
+      },
+      {
+        "id": "dashboard-engineer",
+        "name": "Dashboard Engineer",
+        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/dashboard-engineer",
+        "model": {
+          "primary": "abacus/claude-haiku-4-5"
+        },
+        "identity": {
+          "name": "Dashboard Engineer",
+          "emoji": "📉"
+        }
+      },
+      {
+        "id": "automation-architect",
+        "name": "Automation Architect",
+        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/automation-architect",
+        "model": {
+          "primary": "abacus/claude-haiku-4-5"
+        },
+        "identity": {
+          "name": "Automation Architect",
+          "emoji": "🤖"
+        }
+      },
+      {
+        "id": "landing-page-specialist",
+        "name": "Landing Page Specialist",
+        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/landing-page-specialist",
+        "model": {
+          "primary": "abacus/claude-haiku-4-5"
+        },
+        "identity": {
+          "name": "Landing Page Specialist",
+          "emoji": "🖥️"
+        }
+      },
+      {
+        "id": "analyst",
+        "name": "Analyst",
+        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/analyst",
+        "model": {
+          "primary": "abacus/kimi-k2.5"
+        },
+        "identity": {
+          "name": "Analyst",
+          "emoji": "🔬"
+        }
+      },
+      {
+        "id": "attribution-analyst",
+        "name": "Attribution Analyst",
+        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/attribution-analyst",
+        "model": {
+          "primary": "abacus/kimi-k2.5"
+        },
+        "identity": {
+          "name": "Attribution Analyst",
+          "emoji": "📈"
+        }
+      },
+      {
+        "id": "copy-specialist",
+        "name": "Copy Specialist",
+        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/copy-specialist",
+        "model": {
+          "primary": "abacus/kimi-k2.5"
+        },
+        "identity": {
+          "name": "Copy Specialist",
+          "emoji": "✍️"
+        }
+      },
+      {
+        "id": "designer-pro",
+        "name": "Designer Pro",
+        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/designer-pro",
+        "model": {
+          "primary": "abacus/kimi-k2.5"
+        },
+        "identity": {
+          "name": "Designer Pro",
+          "emoji": "🎨"
+        }
+      },
+      {
+        "id": "video-producer",
+        "name": "Video Producer",
+        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/video-producer",
+        "model": {
+          "primary": "abacus/kimi-k2.5"
+        },
+        "identity": {
+          "name": "Video Producer",
+          "emoji": "🎥"
+        }
+      },
+      {
+        "id": "crm-lifecycle-manager",
+        "name": "CRM Lifecycle Manager",
+        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/crm-lifecycle-manager",
+        "model": {
+          "primary": "abacus/kimi-k2.5"
+        },
+        "identity": {
+          "name": "CRM Lifecycle Manager",
+          "emoji": "💌"
+        }
+      },
+      {
+        "id": "social-intelligence-agent",
+        "name": "Social Intelligence Agent",
+        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/social-intelligence-agent",
+        "model": {
+          "primary": "abacus/kimi-k2.5"
+        },
+        "identity": {
+          "name": "Social Intelligence",
+          "emoji": "📱"
+        }
+      },
+      {
+        "id": "pm",
+        "name": "PM",
+        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/pm",
+        "model": {
+          "primary": "abacus/gemini-3-flash-preview"
+        },
+        "identity": {
+          "name": "PM",
+          "emoji": "📊"
+        }
+      },
+      {
+        "id": "sm",
+        "name": "Scrum Master",
+        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/sm",
+        "model": {
+          "primary": "abacus/gemini-3-flash-preview"
+        },
+        "identity": {
+          "name": "Scrum Master",
+          "emoji": "📋"
+        }
+      },
+      {
+        "id": "review-lead",
+        "name": "Review Lead",
+        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/review-lead",
+        "model": {
+          "primary": "abacus/gemini-3-flash-preview"
+        },
+        "identity": {
+          "name": "Review Lead",
+          "emoji": "🔍"
+        }
+      },
+      {
+        "id": "qa",
+        "name": "QA",
+        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/qa",
+        "model": {
+          "primary": "abacus/gemini-3-flash-preview"
+        },
+        "identity": {
+          "name": "QA",
+          "emoji": "✅"
+        }
+      },
+      {
+        "id": "ux",
+        "name": "UX",
+        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/ux",
+        "model": {
+          "primary": "abacus/gemini-3-flash-preview"
+        },
+        "identity": {
+          "name": "UX",
+          "emoji": "🎭"
+        }
+      },
+      {
+        "id": "traffic-master",
+        "name": "Traffic Master",
+        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/traffic-master",
+        "model": {
+          "primary": "abacus/gemini-3-flash-preview"
+        },
+        "identity": {
+          "name": "Traffic Master",
+          "emoji": "🚦"
+        }
+      }
+    ]
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "custom",
+    "customBindHost": "0.0.0.0",
+    "controlUi": {
+      "allowedOrigins": [
+        "http://localhost:18789",
+        "http://127.0.0.1:18789",
+        "http://localhost:4567",
+        "http://127.0.0.1:4567",
+        "http://localhost:5100",
+        "http://127.0.0.1:5100"
+      ]
+    },
+    "auth": {
+      "mode": "token",
+      "token": "CONFIGURE_VIA_OPENCLAW_WIZARD"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    }
+  },
+  "skills": {
+    "install": {
+      "nodeManager": "npm"
+    }
+  }
+}
