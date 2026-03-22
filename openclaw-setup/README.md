@@ -1,75 +1,107 @@
 # OpenClaw Setup — HAOS v2
 
-Guia de instalação do ambiente HAOS no OpenClaw para nova máquina.
+Kit de instalação do HAOS no OpenClaw para qualquer ambiente.
+O script detecta automaticamente o ambiente e configura os paths corretos.
+
+## Ambientes suportados
+
+| Ambiente | Base path | Exemplo |
+|----------|-----------|---------|
+| **Local/Abacus** | `~/` | Máquina do usuário com OpenClaw instalado normalmente |
+| **Hetzner/Docker** | `/opt/openclaw/data/` | VPS com OpenClaw em container Docker |
+| **Qualquer Linux** | `~/` | Qualquer instalação padrão |
 
 ## Pré-requisitos
 
-- OpenClaw instalado
+- OpenClaw instalado e rodando
 - Acesso SSH ao GitHub configurado (chave `github_simtransforma_key`)
-- Arquivo `~/.env` com todas as credenciais
+- `~/.env` (local) ou `_secrets/` (Hetzner) com credenciais
 
 ## Instalação
 
-### 1. Clonar este repo
+### 1. Clonar o repo privado
 
+**Local/Abacus:**
 ```bash
 cd ~
 git clone git@github.com:simtransforma/principal-HAOS_HAU-AI-Operating-System.git haos-runtime
 ```
 
-### 2. Instalar runtime Node
-
+**Hetzner/Docker (como root):**
 ```bash
-cd ~/haos-runtime/HAOS
-npm install 2>/dev/null || true
-node scripts/doctor.js
+cd /opt/openclaw/data
+git clone git@github.com:simtransforma/principal-HAOS_HAU-AI-Operating-System.git haos-runtime
 ```
 
-### 3. Criar workspaces dos agentes
+### 2. Rodar o setup
 
 ```bash
-bash ~/haos-runtime/openclaw-setup/setup-agents.sh
+bash haos-runtime/openclaw-setup/setup-agents.sh
 ```
 
-### 4. Configurar OpenClaw
+O script automaticamente:
+- Detecta o ambiente (local vs Hetzner/Docker)
+- Cria 27 workspaces dos agentes com AGENTS.md completo
+- Mapeia skills por agente (links simbólicos)
+- Corrige permissões (Hetzner: chown 1000:1000)
+- Atualiza openclaw.json com paths corretos e subagents config
 
-```bash
-cp ~/haos-runtime/openclaw-setup/openclaw.json.template ~/.openclaw/openclaw.json
-# Editar e preencher: gateway.auth.token e models.providers.abacus.apiKey
-```
+### 3. Configurar modelos (se necessário)
 
-### 5. Configurar SSH GitHub
+O script **não mexe nos modelos** configurados — preserva o que já está no `openclaw.json`.
 
-```bash
-cp ~/haos-runtime/openclaw-setup/ssh-config ~/.ssh/config
-chmod 600 ~/.ssh/config
-# Colocar a chave privada em ~/.ssh/github_simtransforma_key
-```
+Para configurar modelos manualmente, editar `openclaw.json` e definir por agente.
 
-### 6. Reiniciar OpenClaw
+### 4. Reiniciar o OpenClaw
 
+**Local:**
 ```bash
 openclaw gateway restart
 ```
 
-## Estrutura dos workspaces
+**Hetzner/Docker:**
+```bash
+cd /opt/openclaw && docker compose restart
+```
 
-Cada agente tem seu workspace em `~/.openclaw/haos-workspaces/<agente>/` com:
+---
 
-- `AGENTS.md` — Prompt mestre (PROMPT.md + SPEC + PLAYBOOK + IO_CONTRACT)
-- `TOOLS.md` — Ferramentas e credenciais
-- `skills/` — Links simbólicos das skills do agente
+## O que é criado
 
-## Mapeamento de modelos
+```
+<base>/.openclaw/
+├── haos-workspaces/
+│   ├── analyst/
+│   │   ├── AGENTS.md      ← Prompt mestre completo
+│   │   ├── TOOLS.md       ← Ferramentas e paths
+│   │   └── skills/        ← Links para skills do agente
+│   ├── tracking-engineer/
+│   │   ├── AGENTS.md
+│   │   ├── TOOLS.md
+│   │   └── skills/
+│   └── ... (26 agentes)
+└── agents/
+    ├── main/              ← Sessions/state do main
+    ├── analyst/           ← Sessions/state do analyst
+    └── ... (agentDirs)
+```
 
-| Tier | Modelo | Agentes |
-|------|--------|---------|
-| 0 | claude-opus-4-6 | dev |
-| 1 | claude-sonnet-4-6 | orquestrador-haos, project-director, operations-director, strategy-director, architect |
-| 2 | claude-haiku-4-5 | product-engineer-webapps, integration-engineer, devops, data-engineer, tracking-engineer, automation-architect, dashboard-engineer, landing-page-specialist |
-| 3 | kimi-k2.5 | analyst, attribution-analyst, copy-specialist, designer-pro, video-producer, crm-lifecycle-manager, social-intelligence-agent |
-| 4 | gemini-3-flash-preview | pm, sm, review-lead, qa, ux, traffic-master |
+---
+
+## Squad — 27 agentes (main + 26 especializados)
+
+| Departamento | Agentes |
+|---|---|
+| @orquestracao | orquestrador-haos, sm, pm, review-lead, qa |
+| @conselho | project-director, operations-director, strategy-director, architect |
+| @dados | tracking-engineer, attribution-analyst, data-engineer, dashboard-engineer, analyst |
+| @criativo | copy-specialist, designer-pro, video-producer |
+| @funnel | automation-architect, crm-lifecycle-manager, landing-page-specialist |
+| @produto | dev, product-engineer-webapps, integration-engineer, devops, ux |
+| @social | social-intelligence-agent |
+
+---
 
 ## Referência operacional
 
-Ver `HAOS_OPENCLAW_OPERATIONS.md` para o guia completo de orquestração.
+Ver `HAOS_OPENCLAW_OPERATIONS.md` para o guia completo de orquestração, rito v2 e Mega-Brain.
