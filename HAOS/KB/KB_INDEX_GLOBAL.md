@@ -20,7 +20,7 @@ Cada chunk/documento deve carregar (quando possível):
   "embedding": [0.012, -0.003, "..."],
   "metadata": {
     "area": "operacoes|tracking|dev|crm|...",
-    "cliente": "global|template",
+    "cliente": "global|edson-burger|...",
     "tipo": "runbook|playbook|prompt|spec|report|..."
   }
 }
@@ -40,5 +40,4 @@ Cada chunk/documento deve carregar (quando possível):
 ## Próximos passos recomendados
 1. Gerar/atualizar `KB/vector-index.json` com embeddings + metadados.
 2. Garantir preenchimento consistente de `area`, `cliente` e `tipo`.
-3. Expandir este arquivo com links por domínio e por domínio.
-
+3. Expandir este arquivo com links por domínio e por cliente.

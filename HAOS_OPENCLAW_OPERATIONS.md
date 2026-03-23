@@ -111,10 +111,31 @@ sessions_spawn(agentId: "architect", task: "...", label: "conselho-arch")
 - main spawna squad especialista em paralelo (até 5 workers)
 - Cada agente executa seu pacote com evidência
 - main monitora via `subagents list` quando necessário
+- **GATE OBRIGATÓRIO DE EXECUCAO (não negociável):**
+  1. Agente entrega build/código OK → **não marca DONE ainda**
+  2. Se a tarefa envolve deploy (VPS, Vercel, Render, etc): deploy deve ser executado E confirmado pelo agente
+  3. Após deploy: **evidência visual obrigatória** (screenshot, curl, browser check)
+  4. Só após evidência visual positiva o agente marca `DONE` e repassa ao main
+  5. Se evidência falhar → agente reporta `REWORK` com causa raiz, não marca DONE
+- **main NUNCA marca EXECUCAO como concluída sem evidência visual do agente**
+
+### 8.1. REPORTS DURANTE O RITO (obrigatório)
+- Cada sub-agente ao completar sua etapa envia reporte no formato:
+  `[timestamp][modelo][etapa][agente][ação][evidência][status]`
+- **main DEVE repassar cada report ao Gian no chat** — não silenciar
+- Formato de repasse ao Gian:
+  ```
+  ✅ [agente] — [etapa]
+  [linha de reporte do agente]
+  ```
+- main não avança para próxima etapa sem confirmar ao Gian que a anterior foi concluída
+- Se sub-agente falhar, main reporta imediatamente: `❌ [agente] — BLOQUEADO: [motivo]`
 
 ### 9. VALIDACAO
 - Spawn: review-lead + qa → validam critérios
 - Atualiza: `node scripts/review.js -- HAOS-XXXX approve|reject`
+- **GATE: validação inclui teste funcional real (não só code review)**
+- review-lead/qa devem verificar o produto no ambiente de produção, não só localmente
 
 ### 10. CONSELHO_SE_REPROVADO (se necessário)
 - Spawn: conselho debate correção
@@ -219,3 +240,32 @@ spawn(agentId: "ux", ...)
 | Projetos HAOS | ~/haos-runtime/HAOS/projetos/ |
 | KB | ~/haos-runtime/HAOS/KB/ |
 | Workspaces agentes | ~/.openclaw/haos-workspaces/<agent>/ |
+
+---
+
+## Mega-Brain — Sistema de Conhecimento
+
+### Comandos
+| Comando | Função |
+|---|---|
+| `mb:briefing` | Health score + status do sistema |
+| `mb:ingest [url/path]` | Ingerir material (YouTube, PDF, texto) |
+| `mb:scan` | Listar inbox pendente |
+| `mb:process` | Pipeline 8 fases |
+| `mb:extract-dna [pessoa]` | DNA cognitivo 5 camadas |
+| `mb:ask [agente] [pergunta]` | Consulta com DNA aplicado |
+| `mb:conclave [decisão]` | Conselho estratégico completo |
+| `mb:dossier [pessoa]` | Dossiê de especialista |
+
+### Paths
+```
+Base:    ~/.openclaw/haos-workspaces/orquestrador-haos/mega-brain/
+Core:    ~/haos-runtime/HAOS/core-base/mega-brain/
+Python:  /opt/computersetup/.pyenv/versions/3.11.6/bin/python3
+yt-dlp:  ~/.local/bin/yt-dlp
+```
+
+### Uso no rito v2
+- Etapa 3 (Briefing): `mb:briefing`
+- Etapa 7 (Decisão): `mb:conclave "[decisão]"` quando risco alto
+- Etapa 12 (Fechamento): indexar aprendizados

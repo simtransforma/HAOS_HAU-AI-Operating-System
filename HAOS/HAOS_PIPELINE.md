@@ -64,8 +64,12 @@ Regra adicional: `soft gate` pode avançar com `gate_ok=false` somente com justi
 - Objetivo: ordem de testes/árvore de decisão.
 ### EXECUCAO
 - Objetivo: implementação por squad especialista.
+- **Gate interno obrigatório:** build OK → deploy → evidência visual → DONE.
+- Agente não pode marcar DONE sem evidência visual em produção.
+- Main repassa report de cada agente ao Gian no chat durante execução.
 ### VALIDACAO
 - Objetivo: aprovação/reprovação com evidência.
+- **Evidência obrigatória:** teste funcional em produção (não só local).
 ### CONSELHO_SE_REPROVADO
 - Objetivo: debater correção após reprovação (máx 3 ciclos).
 ### CONSELHO_Final_Aprovado

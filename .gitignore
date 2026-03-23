@@ -9,17 +9,15 @@ TOOLS.md
 secrets/
 maturador-desktop/runtime-web/
 maturador-desktop/tmp/
-
-# --- Sensitive / local-only ---
-**/.env
-**/.env.*
-!**/.env.example
-**/*secret*
-**/*token*
-**/*credential*
-**/service-account*.json
-**/oauth*.json
+# OpenClaw runtime state (não versionar)
+HAOS/runtime/state/
+HAOS/vault/
+HAOS/KB/KB_INDEX_CLIENTE_*
 memory/
-transcricoes/
-.haos/
-HAOS/KB/*.json
+# Logs e temporários
+*.log
+nohup.out
+node_modules/
+HAOS/.env
+HAOS/CREDENTIALS_SOURCE_OF_TRUTH.md
+HAOS/HAOS_CREDENTIALS_STANDARD.md

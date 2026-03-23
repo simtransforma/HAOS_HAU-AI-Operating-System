@@ -13,6 +13,7 @@
     "mode": "merge",
     "providers": {
       "abacus": {
+        "baseUrl": "https://routellm.abacus.ai/v1",
         "api": "openai-completions",
         "models": [
           {
@@ -86,7 +87,7 @@
   "agents": {
     "defaults": {
       "model": {
-        "primary": "abacus/kimi-k2.5"
+        "primary": "abacus/claude-sonnet-4-6"
       },
       "models": {
         "abacus/kimi-k2.5": {},
@@ -101,7 +102,8 @@
         "maxSpawnDepth": 2,
         "maxChildrenPerAgent": 5,
         "archiveAfterMinutes": 120,
-        "runTimeoutSeconds": 900
+        "runTimeoutSeconds": 900,
+        "maxConcurrent": 8
       }
     },
     "list": [
@@ -164,6 +166,11 @@
         "identity": {
           "name": "Operations Director",
           "emoji": "⚙️"
+        },
+        "subagents": {
+          "allowAgents": [
+            "*"
+          ]
         }
       },
       {
@@ -176,6 +183,11 @@
         "identity": {
           "name": "Strategy Director",
           "emoji": "🧭"
+        },
+        "subagents": {
+          "allowAgents": [
+            "*"
+          ]
         }
       },
       {
@@ -188,6 +200,11 @@
         "identity": {
           "name": "Architect",
           "emoji": "🏗️"
+        },
+        "subagents": {
+          "allowAgents": [
+            "*"
+          ]
         }
       },
       {
@@ -200,6 +217,9 @@
         "identity": {
           "name": "Dev",
           "emoji": "💻"
+        },
+        "subagents": {
+          "allowAgents": []
         }
       },
       {
@@ -212,6 +232,9 @@
         "identity": {
           "name": "Product Engineer",
           "emoji": "🌐"
+        },
+        "subagents": {
+          "allowAgents": []
         }
       },
       {
@@ -224,6 +247,9 @@
         "identity": {
           "name": "Integration Engineer",
           "emoji": "🔌"
+        },
+        "subagents": {
+          "allowAgents": []
         }
       },
       {
@@ -236,6 +262,9 @@
         "identity": {
           "name": "DevOps",
           "emoji": "🚀"
+        },
+        "subagents": {
+          "allowAgents": []
         }
       },
       {
@@ -248,6 +277,9 @@
         "identity": {
           "name": "Tracking Engineer",
           "emoji": "📡"
+        },
+        "subagents": {
+          "allowAgents": []
         }
       },
       {
@@ -260,6 +292,9 @@
         "identity": {
           "name": "Data Engineer",
           "emoji": "🗄️"
+        },
+        "subagents": {
+          "allowAgents": []
         }
       },
       {
@@ -272,6 +307,9 @@
         "identity": {
           "name": "Dashboard Engineer",
           "emoji": "📉"
+        },
+        "subagents": {
+          "allowAgents": []
         }
       },
       {
@@ -284,6 +322,9 @@
         "identity": {
           "name": "Automation Architect",
           "emoji": "🤖"
+        },
+        "subagents": {
+          "allowAgents": []
         }
       },
       {
@@ -296,6 +337,9 @@
         "identity": {
           "name": "Landing Page Specialist",
           "emoji": "🖥️"
+        },
+        "subagents": {
+          "allowAgents": []
         }
       },
       {
@@ -308,6 +352,9 @@
         "identity": {
           "name": "Analyst",
           "emoji": "🔬"
+        },
+        "subagents": {
+          "allowAgents": []
         }
       },
       {
@@ -320,6 +367,9 @@
         "identity": {
           "name": "Attribution Analyst",
           "emoji": "📈"
+        },
+        "subagents": {
+          "allowAgents": []
         }
       },
       {
@@ -332,6 +382,9 @@
         "identity": {
           "name": "Copy Specialist",
           "emoji": "✍️"
+        },
+        "subagents": {
+          "allowAgents": []
         }
       },
       {
@@ -344,6 +397,9 @@
         "identity": {
           "name": "Designer Pro",
           "emoji": "🎨"
+        },
+        "subagents": {
+          "allowAgents": []
         }
       },
       {
@@ -356,6 +412,9 @@
         "identity": {
           "name": "Video Producer",
           "emoji": "🎥"
+        },
+        "subagents": {
+          "allowAgents": []
         }
       },
       {
@@ -368,6 +427,9 @@
         "identity": {
           "name": "CRM Lifecycle Manager",
           "emoji": "💌"
+        },
+        "subagents": {
+          "allowAgents": []
         }
       },
       {
@@ -380,6 +442,9 @@
         "identity": {
           "name": "Social Intelligence",
           "emoji": "📱"
+        },
+        "subagents": {
+          "allowAgents": []
         }
       },
       {
@@ -392,6 +457,11 @@
         "identity": {
           "name": "PM",
           "emoji": "📊"
+        },
+        "subagents": {
+          "allowAgents": [
+            "*"
+          ]
         }
       },
       {
@@ -404,6 +474,11 @@
         "identity": {
           "name": "Scrum Master",
           "emoji": "📋"
+        },
+        "subagents": {
+          "allowAgents": [
+            "*"
+          ]
         }
       },
       {
@@ -416,6 +491,9 @@
         "identity": {
           "name": "Review Lead",
           "emoji": "🔍"
+        },
+        "subagents": {
+          "allowAgents": []
         }
       },
       {
@@ -428,6 +506,9 @@
         "identity": {
           "name": "QA",
           "emoji": "✅"
+        },
+        "subagents": {
+          "allowAgents": []
         }
       },
       {
@@ -440,18 +521,9 @@
         "identity": {
           "name": "UX",
           "emoji": "🎭"
-        }
-      },
-      {
-        "id": "traffic-master",
-        "name": "Traffic Master",
-        "workspace": "/home/ubuntu/.openclaw/haos-workspaces/traffic-master",
-        "model": {
-          "primary": "abacus/gemini-3-flash-preview"
         },
-        "identity": {
-          "name": "Traffic Master",
-          "emoji": "🚦"
+        "subagents": {
+          "allowAgents": []
         }
       }
     ]
@@ -481,8 +553,7 @@
       ]
     },
     "auth": {
-      "mode": "token",
-      "token": "CONFIGURE_VIA_OPENCLAW_WIZARD"
+      "mode": "token"
     },
     "tailscale": {
       "mode": "off",
@@ -492,6 +563,11 @@
   "skills": {
     "install": {
       "nodeManager": "npm"
+    },
+    "load": {
+      "extraDirs": [
+        "/home/ubuntu/haos-runtime/HAOS/skills"
+      ]
     }
   }
 }

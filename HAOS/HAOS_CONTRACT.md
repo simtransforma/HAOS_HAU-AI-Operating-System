@@ -23,7 +23,17 @@
 Constitui violação:
 - marcar `CONSELHO-Fase1` como `OK` sem bloco de perguntas enviado;
 - marcar `REPORT-SOLICITANTE` como `OK` sem resposta do solicitante referenciada;
-- abrir rito sem mensagem iniciando com `#`.
+- abrir rito sem mensagem iniciando com `#`;
+- marcar `EXECUCAO` como `DONE` sem evidência visual (screenshot/curl/browser) do produto em produção;
+- agente de execução fazer build local e não fazer deploy quando a tarefa exige entrega em produção;
+- main corrigir resultados da execução sozinho sem re-acionar o rito (viola regra 2: execução é delegada ao especialista);
+- main omitir reports de sub-agentes ao solicitante — cada reporte deve ser repassado ao Gian no chat.
+
+## Regra de reports (nova — obrigatória)
+- Durante o rito, a cada etapa concluída por sub-agente, main repassa o report ao Gian
+- Formato de repasse: `✅ [agente] — [etapa]: [evidência]`
+- main não avança etapa sem confirmar conclusão ao Gian
+- Falha/bloqueio também deve ser reportado imediatamente: `❌ [agente] — BLOQUEADO: [motivo]`
 
 ## Fluxo oficial
 `ABERTURA -> CONSELHO-Fase1 -> REPORT-SOLICITANTE -> CONSELHO-Fase2 -> MEGA_BRAIN -> DIRETOR -> ESTRATEGISTA -> EXECUCAO -> VALIDACAO -> (se reprovado: CONSELHO_SE_REPROVADO [máx 3] -> MEGA_BRAIN) -> CONSELHO_Final_Aprovado -> ENTREGA -> REGISTRO`
