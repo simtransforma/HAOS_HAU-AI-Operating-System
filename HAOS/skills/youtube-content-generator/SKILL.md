@@ -1,3 +1,12 @@
+---
+name: youtube-content-generator
+description: >
+  Geração completa de conteúdo otimizado para YouTube com SEO avançado e thumbnails.
+  Cria títulos, descrições, tags, scripts, e estratégia de lançamento para canais
+  de tecnologia, programação, low-code, no-code e IA. Inclui análise de competidores
+  e otimização para 70% mobile.
+---
+
 # YouTube Content Generator - Script7
 
 Skill para geração completa de conteúdo otimizado para YouTube, incluindo SEO avançado e geração automática de thumbnails via API.

@@ -1,20 +1,11 @@
 ---
 name: hero-visual-prompt-generator
-description: |
+description: >
   Generate premium AI image and video prompts for landing page hero sections.
-  Creates cinematic, commercial-quality visual prompts optimized for tools like
-  Nano Banana, FreePik AI, Google Veo Flow, Runway ML, and Pika Labs.
-
-  Use when user mentions:
-  - "Criar prompt para hero" / "Hero image prompt" / "Hero video prompt"
-  - "Prompt para landing page" / "Imagem para hero section"
-  - "Video para landing page" / "Visual premium para LP"
-  - "Prompt Nano Banana" / "Prompt para FreePik AI" / "Prompt para Veo Flow"
-  - "Animar imagem de produto"
-  - Any request for premium product visuals for websites
-
-  Supports: Beverages, Food, Technology, Cosmetics, Fashion, Lifestyle products.
-  Outputs: Structured prompts in English with desktop (16:9) and mobile (9:16) versions.
+  Creates cinematic, commercial-quality visual prompts optimized for Nano Banana,
+  FreePik AI, Google Veo Flow, Runway ML, and Pika Labs. Supports beverages, food,
+  tech, cosmetics, fashion, lifestyle products. Outputs structured English prompts
+  with desktop (16:9) and mobile (9:16) versions.
 ---
 
 # Hero Visual Prompt Generator

@@ -1,23 +1,11 @@
 ---
 name: landing-page-prd-architect
-description: |
-  Especialista em criar PRDs (Product Requirements Documents) técnicos ultra detalhados para geração de landing pages e sites premium usando Gemini CLI como ferramenta de desenvolvimento.
-
-  Triggers - Usar quando o usuário mencionar:
-  - "Criar PRD para landing page" / "Planejar landing page"
-  - "Documentar site para Gemini" / "Criar especificação de LP"
-  - "PRD para site" / "Arquitetar landing page"
-  - "Briefing de landing page" / "Especificação técnica de site"
-  - "Planejar página web" / "Criar documentação para Gemini CLI"
-  - Qualquer pedido para criar documentação completa de landing page
-
-  Capacidades:
-  - Extrair contexto profundo através de discovery interativo
-  - Pesquisar inspirações visuais (Dribbble, Awwwards, Behance)
-  - Definir identidade visual completa (cores, tipografia, ícones)
-  - Criar wireframes detalhados (desktop e mobile)
-  - Gerar prompts de imagem para Nano Banana/IA
-  - Entregar documentação completa pronta para Gemini CLI executar
+description: >
+  Cria PRDs (Product Requirements Documents) técnicos ultra detalhados para
+  landing pages e sites premium usando Gemini CLI. Faz discovery interativo,
+  pesquisa inspirações visuais (Dribbble, Awwwards, Behance), define identidade
+  visual completa, cria wireframes desktop/mobile, gera prompts de imagem para IA,
+  e entrega documentação pronta para execução.
 ---
 
 # Landing Page PRD Architect
